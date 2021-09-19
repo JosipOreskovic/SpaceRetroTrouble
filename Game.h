@@ -101,6 +101,7 @@ private:
     vector<GameObject*> tanks_;
     vector<GameObject*> fuelTanks_;
     vector<GameObject*> tiles_;
+    vector<vector<GameObject*>> tileSets_;
     vector<GameObject*> mines_;
 
     Time lastEnemyShipTime_;
@@ -112,7 +113,8 @@ private:
 
     Vector2f resolution_;
     Time totalTime_;
-    Time nextLevelTime_;
+    float totalDistance_ = 0.0;
+    bool levelChange_ = false;
 
     int score_;
     int hiScore_;

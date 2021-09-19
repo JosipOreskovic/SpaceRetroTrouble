@@ -28,8 +28,7 @@ void Game::run()
     {
         Time dt = clock.restart();
         totalTime_ += dt;
-        nextLevelTime_ += dt;
-
+  
         input();
         update(dt);
         draw();
@@ -48,10 +47,9 @@ void Game::initialize()
     score_ = 0;
     lives_ = 3;
     level_ = 1;
+    totalDistance_ = 0.0;
 
     player.reset();
-
-    
 
     scoreText_.setFont(AssetManager::GetFont("Assets/Fonts/8bitOperatorPlus8-Regular.ttf"));
     livesText_.setFont(AssetManager::GetFont("Assets/Fonts/8bitOperatorPlus8-Regular.ttf"));
@@ -82,9 +80,9 @@ void Game::restart()
 
     player.reset();
 
-    nextLevelTime_ = seconds(0.0);
+    totalDistance_ = 1984 * (level_ - 1);
 
-    //player.setPosition(resolution.x / 2., resolution.y / 2.);
+    player.setPosition(resolution_.x / 2., resolution_.y / 2.);
 }
 
 int Game::getLives()

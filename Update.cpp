@@ -38,17 +38,20 @@ void Game::update(Time dt) {
 
         // Spawn game objects from files
 
-        if (tiles_.empty())
-			spawnTiles();
+        if (tiles_.empty() || levelChange_)
+        {
+            spawnTiles();
+            levelChange_ = false;
+        }
         if (rockets_.empty())
             spawnRockets(dt);
         if (fuelTanks_.empty())
             spawnFuelTanks(dt);
+        if (tanks_.empty())
+            spawnTanks(dt);
 
-        if (level_ == 1 && mines_.empty())
+        if (level_ == 2 && mines_.empty())
             spawnMines();
-        if (level_ >= 2 && tanks_.empty())
-			spawnTanks(dt);
         if (level_ == 3 && meteors_.empty())
 			spawnMeteors();
         if (level_ == 4 && enemyFleet_.empty())
@@ -88,24 +91,21 @@ void Game::update(Time dt) {
             updateGameObjects(dt,mines_);
         }
 
-        if (level_ >= 2 || !tanks_.empty())
-        {
-            updateGameObjects(dt, tanks_, player.getPosition());
-        }
 
-       
+        updateGameObjects(dt, rockets_, player.getPosition());
+        updateGameObjects(dt, tanks_, player.getPosition());
         updateGameObjects(dt, fuelTanks_);
         updateGameObjects(dt, tiles_);
-        updateGameObjects(dt, rockets_, player.getPosition());
 
         background_.update(dt, resolution_);
 
         updateHUD();
+        totalDistance_ += 200 * dt.asSeconds();
 
-        if (nextLevelTime_.asSeconds() > 10)
+        if (totalDistance_ > 1984 * level_)
         {
-            level_++;
-            nextLevelTime_ = seconds(0.0);
+        	level_++;
+            levelChange_ = true;
             if (level_ == 5)
                 state_ = State::Game_Over;
         }
@@ -141,7 +141,7 @@ void Game::updateGameObjects(Time dt, vector<GameObject*>& gameObjects, Vector2f
 
 void Game::spawnTiles()
 {
-    string fileName("Assets/Levels/Tiles.txt");
+    string fileName("Assets/Levels/Level" + to_string(level_) + "/Tiles.txt");
     string s;
     ifstream inFile(fileName);
 

@@ -31,13 +31,11 @@ void Game::input() {
                 if (state_ == State::Playing)
                 {
                     state_ = State::Paused;
-                    pauseTime = nextLevelTime_;
                     
                 }
                 else if (state_ == State::Paused)
                 {
                     state_ = State::Playing;
-                    nextLevelTime_ = pauseTime;
                 }
             }
 
