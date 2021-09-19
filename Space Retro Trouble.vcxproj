@@ -32,6 +32,7 @@
     <ClInclude Include="Mine.h" />
     <ClInclude Include="Missile.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Rocket.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="Tank.h" />
@@ -59,10 +60,14 @@
     <ClCompile Include="Rocket.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="SpaceRetroTrouble.cpp" />
+    <ClCompile Include="SpawnGameObjects.cpp" />
     <ClCompile Include="Tank.cpp" />
     <ClCompile Include="TankMissile.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Update.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Space Retro Trouble.rc" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
