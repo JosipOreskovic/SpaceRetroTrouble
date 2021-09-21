@@ -7,6 +7,7 @@
 EnemyShip::EnemyShip(float x, float y, float speed) : GameObject(x,y,speed), startPositionY_(y), angle_(0.0), oscilation_(2.0)
 {
     sprite_ = Sprite(AssetManager::GetTexture("Assets/Graphics/EnemyShip.png"));
+    sprite_.setOrigin(sprite_.getLocalBounds().width / 2., sprite_.getLocalBounds().height / 2.);
 }
 
 void EnemyShip::update(Time dt, Time totalTime)
@@ -22,7 +23,7 @@ void EnemyShip::update(Time dt, Time totalTime)
     }
     else
     {
-        if (explosionAnim_->update(dt, Vector2f(position_.x - 64, position_.y - 86)))
+        if (explosionAnim_->update(dt, Vector2f(position_.x, position_.y)))
         {
             active_ = false;
         }

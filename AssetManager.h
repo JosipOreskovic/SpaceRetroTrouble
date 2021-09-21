@@ -10,6 +10,13 @@
 using namespace sf;
 using namespace std;
 
+// Global game constants
+
+const float LEVEL_DISTANCE = 2666;
+const float GAME_SPEED = 200;
+const float TILE_DIMENSION = 64;
+
+
 class AssetManager {
 public:
     AssetManager();

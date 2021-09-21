@@ -8,6 +8,7 @@
 Mine::Mine(float x, float y, float speed) : GameObject(x,y,speed)
 {
    sprite_ = Sprite(AssetManager::GetTexture("Assets/Graphics/Mine.png"));
+   sprite_.setOrigin(sprite_.getLocalBounds().width / 2., sprite_.getLocalBounds().height / 2.);
 }
 
 void Mine::update(Time dt, Time totalTime)
@@ -20,7 +21,7 @@ void Mine::update(Time dt, Time totalTime)
 
     else
     {
-        if (explosionAnim_->update(dt, Vector2f(position_.x - TILE_DIMENSION, position_.y - TILE_DIMENSION)))
+        if (explosionAnim_->update(dt, Vector2f(position_.x, position_.y)))
             active_ = false;
     }
 }

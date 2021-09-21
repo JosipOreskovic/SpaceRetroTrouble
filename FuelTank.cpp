@@ -23,7 +23,7 @@ void FuelTank::update(Time dt, Time totalTime)
     }
 	else
     {
-		if (explosionAnim_->update(dt, Vector2f(position_.x - 64, position_.y - 86)))
+		if (explosionAnim_->update(dt, Vector2f(position_.x, position_.y + TILE_DIMENSION / 2.)))
 		{
 			active_ = false;
 		}

@@ -25,6 +25,7 @@ bool Animation::update(Time dt, Vector2f position)
 	sprite_.setTextureRect(sf::IntRect(animFrame * spriteSize_.x, 0, spriteSize_.x, spriteSize_.y));
 
 	sprite_.setPosition(position);
+	sprite_.setOrigin(sprite_.getLocalBounds().width / 2., sprite_.getLocalBounds().height / 2.);
 
 	if (!loop_ && (animFrame == (framesNum_ - 1)))
 	{

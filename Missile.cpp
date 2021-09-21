@@ -8,10 +8,11 @@
 
 Missile::Missile(float x, float y)
 {
-    sprite_ = Sprite(AssetManager::GetTexture("Assets/Graphics/Missile.png"));
     position_.x = x;
     position_.y = y;
     speed_ = 600;
+    sprite_ = Sprite(AssetManager::GetTexture("Assets/Graphics/Missile.png"));
+    sprite_.setOrigin(sprite_.getLocalBounds().width / 2., sprite_.getLocalBounds().height / 2.);
 }
 
 void Missile::update(Time dt)

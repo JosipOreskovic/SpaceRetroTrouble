@@ -58,6 +58,8 @@ public:
 private:
     Vector2f position_;
     string name_;
+    bool active_;
+    float speed_;
 
     Sprite shipSprite_;
     Sprite engineSprite_;
@@ -72,7 +74,7 @@ private:
     Time fuelUseTime_;
     bool outOfFuel_;
 
-    bool active_;
+
     bool upPressed_;
     bool downPressed_;
     bool leftPressed_;

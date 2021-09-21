@@ -30,39 +30,39 @@ void Game::spawn(string objectName, vector<GameObject*>& gameObjects)
 
     while (getline(inFile, s))
     {
-        Vector2f position;
+        Vector2f pos;
         stringstream ss(s);
-        ss >> position.x >> position.y;
+        ss >> pos.x >> pos.y;
 
         if (objectName == "Tiles")
         {
             int type;
             ss >> type;
-            tiles_.push_back(new Tile(resolution_.x + position.x, resolution_.y - position.y, GAME_SPEED));
-            tiles_.back()->getSprite().setTexture(AssetManager::GetTexture("Assets/Graphics/Tiles/Tile" + to_string(type) + ".png"));
+            tiles_.push_back(new Tile(resolution_.x + pos.x * TILE_DIMENSION, resolution_.y - pos.y * TILE_DIMENSION, GAME_SPEED));
+            tiles_.back()->getSprite().setTexture(AssetManager::GetTexture("Assets/Graphics/Tiles/Level" + to_string(level_) + "/Tile" + to_string(type) + ".png"));
         }
 
 
         if (objectName == "Rockets")
         {
-            rockets_.push_back(new Rocket(resolution_.x + position.x, resolution_.y - position.y, GAME_SPEED));
+            rockets_.push_back(new Rocket(resolution_.x + pos.x * TILE_DIMENSION, resolution_.y - pos.y * TILE_DIMENSION, GAME_SPEED));
         }
 
 
         if (objectName == "PlasmaCannons")
         {
-            tanks_.push_back(new Tank(resolution_.x + position.x, resolution_.y - position.y, GAME_SPEED));
+            tanks_.push_back(new Tank(resolution_.x + pos.x * TILE_DIMENSION, resolution_.y - pos.y * TILE_DIMENSION, GAME_SPEED));
         }
 
 
         if (objectName == "FuelTanks")
         {
-            fuelTanks_.push_back(new FuelTank(resolution_.x + position.x, resolution_.y - position.y, GAME_SPEED));
+            fuelTanks_.push_back(new FuelTank(resolution_.x + pos.x * TILE_DIMENSION, resolution_.y - pos.y * TILE_DIMENSION, GAME_SPEED));
         }
 
         if (objectName == "Mines")
         {
-            mines_.push_back(new Mine(resolution_.x + position.x, position.y, GAME_SPEED));
+            mines_.push_back(new Mine(resolution_.x + pos.x * TILE_DIMENSION, pos.y * TILE_DIMENSION, GAME_SPEED));
         }
 
 
@@ -70,14 +70,14 @@ void Game::spawn(string objectName, vector<GameObject*>& gameObjects)
         {
             float speed;
             ss >> speed;
-            meteors_.push_back(new Meteor(resolution_.x + position.x, position.y, speed));
+            meteors_.push_back(new Meteor(resolution_.x + pos.x * TILE_DIMENSION, pos.y * TILE_DIMENSION, speed));
         }
 
         if (objectName == "EnemyFleet")
         {
             float speed;
             ss >> speed;
-            enemyFleet_.push_back(new EnemyShip(resolution_.x + position.x, position.y, speed));
+            enemyFleet_.push_back(new EnemyShip(resolution_.x + pos.x * TILE_DIMENSION, pos.y * TILE_DIMENSION, speed));
         }
     }
 }
@@ -90,13 +90,13 @@ void Game::spawn(string objectName, vector<GameObject*>& gameObjects)
 //
 //    while (getline(inFile, s))
 //    {
-//        Vector2f position;
+//        Vector2f pos;
 //        float speed;
 //        int type;
 //        stringstream ss(s);
-//        ss >> position.x >> position.y >> speed;
+//        ss >> pos.x >> pos.y >> speed;
 //        ss >> type;
-//        tiles_.push_back(new Tile(resolution_.x + position.x, resolution_.y - position.y, speed));
+//        tiles_.push_back(new Tile(resolution_.x + pos.x, resolution_.y - pos.y, speed));
 //        tiles_.back()->getSprite().setTexture(AssetManager::GetTexture("Assets/Graphics/Tile" + to_string(type) + ".png"));
 //    }
 //}
@@ -109,11 +109,11 @@ void Game::spawn(string objectName, vector<GameObject*>& gameObjects)
 //
 //    while (getline(inFile, s))
 //    {
-//        Vector2f position;
+//        Vector2f pos;
 //        float speed;
 //        stringstream ss(s);
-//        ss >> position.x >> position.y >> speed;
-//        enemyFleet_.push_back(new EnemyShip(resolution_.x + position.x, position.y, speed));
+//        ss >> pos.x >> pos.y >> speed;
+//        enemyFleet_.push_back(new EnemyShip(resolution_.x + pos.x, pos.y, speed));
 //    }
 //}
 //
@@ -125,11 +125,11 @@ void Game::spawn(string objectName, vector<GameObject*>& gameObjects)
 //
 //    while (getline(inFile, s))
 //    {
-//        Vector2f position;
+//        Vector2f pos;
 //        float speed;
 //        stringstream ss(s);
-//        ss >> position.x >> position.y >> speed;
-//        meteors_.push_back(new Meteor(resolution_.x + position.x, position.y, speed));
+//        ss >> pos.x >> pos.y >> speed;
+//        meteors_.push_back(new Meteor(resolution_.x + pos.x, pos.y, speed));
 //    }
 //}
 //
@@ -141,11 +141,11 @@ void Game::spawn(string objectName, vector<GameObject*>& gameObjects)
 //
 //    while (getline(inFile, s))
 //    {
-//        Vector2f position;
+//        Vector2f pos;
 //        float speed;
 //        stringstream ss(s);
-//        ss >> position.x >> position.y >> speed;
-//        mines_.push_back(new Mine(resolution_.x + position.x, position.y, speed));
+//        ss >> pos.x >> pos.y >> speed;
+//        mines_.push_back(new Mine(resolution_.x + pos.x, pos.y, speed));
 //    }
 //}
 //
@@ -157,11 +157,11 @@ void Game::spawn(string objectName, vector<GameObject*>& gameObjects)
 //
 //    while (getline(inFile, s))
 //    {
-//        Vector2f position;
+//        Vector2f pos;
 //        float speed;
 //        stringstream ss(s);
-//        ss >> position.x >> position.y >> speed;
-//        rockets_.push_back(new Rocket(resolution_.x + position.x, resolution_.y - position.y, speed));
+//        ss >> pos.x >> pos.y >> speed;
+//        rockets_.push_back(new Rocket(resolution_.x + pos.x, resolution_.y - pos.y, speed));
 //    }
 //}
 //
@@ -173,11 +173,11 @@ void Game::spawn(string objectName, vector<GameObject*>& gameObjects)
 //
 //    while (getline(inFile, s))
 //    {
-//        Vector2f position;
+//        Vector2f pos;
 //        float speed;
 //        stringstream ss(s);
-//        ss >> position.x >> position.y >> speed;
-//        tanks_.push_back(new Tank(resolution_.x + position.x, resolution_.y - position.y, speed));
+//        ss >> pos.x >> pos.y >> speed;
+//        tanks_.push_back(new Tank(resolution_.x + pos.x, resolution_.y - pos.y, speed));
 //    }
 //}
 //
@@ -189,10 +189,10 @@ void Game::spawn(string objectName, vector<GameObject*>& gameObjects)
 //
 //    while (getline(inFile, s))
 //    {
-//        Vector2f position;
+//        Vector2f pos;
 //        float speed;
 //        stringstream ss(s);
-//        ss >> position.x >> position.y >> speed;
-//        fuelTanks_.push_back(new FuelTank(resolution_.x + position.x, resolution_.y - position.y, speed));
+//        ss >> pos.x >> pos.y >> speed;
+//        fuelTanks_.push_back(new FuelTank(resolution_.x + pos.x, resolution_.y - pos.y, speed));
 //    }
 //}

@@ -6,13 +6,15 @@
 
 Bomb::Bomb(float x, float y)
 {
-    sprite_ = Sprite(AssetManager::GetTexture("Assets/Graphics/Bomb.png"));
+   
     position_.x = x;
     position_.y = y;
     angle_ = 0.0;
     speed_ = 300.0;
     gravity_ = 1.3;
     rotationSpeed_ = 50;
+    sprite_ = Sprite(AssetManager::GetTexture("Assets/Graphics/Bomb.png"));
+    sprite_.setOrigin(sprite_.getLocalBounds().width / 2., sprite_.getLocalBounds().height / 2.);
 }
 
 void Bomb::update(Time dt)

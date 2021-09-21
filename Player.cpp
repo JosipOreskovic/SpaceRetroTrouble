@@ -5,16 +5,19 @@
 #include "Player.h"
 
 
+
 Player::Player()
 {
     active_ = true;
     fuelLevel_ = 100;
     outOfFuel_ = false;
+    speed_ = 200.;
 
     newBomb_ = false;
     newMissile_ = false;
 
     shipSprite_ = Sprite(AssetManager::GetTexture("Assets/Graphics/PlayerShip.png"));
+    shipSprite_.setOrigin(shipSprite_.getLocalBounds().width / 2., shipSprite_.getLocalBounds().height / 2.);
 
     engineAnim_ = new Animation("PlayerEngine", "Assets/Graphics/FlightEngine.png", seconds(1), true,
         Vector2f(position_.x, position_.y), Vector2f(0, 0), Vector2i(64, 64), 4);
@@ -40,13 +43,13 @@ bool Player::update(Time dt, Time totalTime, Vector2f resolution)
     if (active_)
     {
         updateShip(dt, resolution);
-        engineAnim_->update(dt, Vector2f(position_.x - 32, position_.y));
+        engineAnim_->update(dt, Vector2f(position_.x - TILE_DIMENSION, position_.y));
         updateFuel(totalTime);
         
     }
     else
     {
-        status =  explosionAnim_->update(dt, Vector2f(playerHitPosition_.x - 64, playerHitPosition_.y - 86));
+        status =  explosionAnim_->update(dt, Vector2f(playerHitPosition_.x, playerHitPosition_.y));
     }
 
     updateBombs(dt, totalTime, resolution);
@@ -67,34 +70,34 @@ void Player::updateShip(Time dt, Vector2f resolution)
     {
         if (upPressed_)
         {
-            position_.y -= 200 * dt.asSeconds();
+            position_.y -= speed_ * dt.asSeconds();
             if (position_.y < 100)
                 position_.y = 100;
         }
 
         if (downPressed_)
         {
-            position_.y += 200 * dt.asSeconds();
+            position_.y += speed_ * dt.asSeconds();
             if (position_.y > resolution.y - 100)
                 position_.y = resolution.y - 100;
         }
 
         if (leftPressed_)
         {
-            position_.x -= 200 * dt.asSeconds();
+            position_.x -= speed_ * dt.asSeconds();
             if (position_.x < 0)
                 position_.x = 0;
         }
         if (rightPressed_)
         {
-            position_.x += 200 * dt.asSeconds();
+            position_.x += speed_ * dt.asSeconds();
             if (position_.x > resolution.x - 200)
                 position_.x = resolution.x - 200;
         }
     }
     else
     {
-        position_.y += 200 * dt.asSeconds();
+        position_.y += speed_ * dt.asSeconds();
     }
 
     shipSprite_.setPosition(position_.x, position_.y);
@@ -271,7 +274,7 @@ void Player::input(Event& event, Time totalTime)
         if (!newMissile_)
         {
             newMissile_ = true;
-            missiles_.push_back(new Missile(position_.x + 120, position_.y + 45));
+            missiles_.push_back(new Missile(position_.x + TILE_DIMENSION, position_.y + TILE_DIMENSION / 4.));
             lastMissileTime_ = totalTime;
         }
     }
@@ -283,7 +286,7 @@ void Player::input(Event& event, Time totalTime)
         if (!newBomb_)
         {
             newBomb_ = true;
-            bombs_.push_back(new Bomb(position_.x + 60, position_.y + 30));
+            bombs_.push_back(new Bomb(position_.x, position_.y + TILE_DIMENSION / 4.));
             lastBombTime_ = totalTime;
         }
     }

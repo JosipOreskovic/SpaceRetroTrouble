@@ -25,11 +25,11 @@ void Tank::update(Time dt, Time totalTime, Vector2f playerPosition)
     if (!destroyed_)
     {
         position_.x -= speed_ * dt.asSeconds();
-        sprite_.setPosition(position_.x, position_.y);
+        sprite_.setPosition(position_.x , position_.y);
     }
 	else
     {
-		if (explosionAnim_->update(dt, Vector2f(position_.x - 64, position_.y - 86)))
+		if (explosionAnim_->update(dt, Vector2f(position_.x, position_.y + TILE_DIMENSION / 2.)))
 		{
 			active_ = false;
 		}
