@@ -32,9 +32,21 @@
 
 using namespace sf;
 
-class Game {
+// Global game constants
+
+const float LEVEL_DISTANCE = 2666;
+const float GAME_SPEED = 200;
+const float TILE_DIMENSION = 64;
+
+
+
+class Game
+{
 public:
-    Game();
+
+	// Public methods
+
+	Game();
     void run();
 
 private:
@@ -60,6 +72,9 @@ private:
 
     void updateGameObjects(Time dt, vector<GameObject*>& gameObjects);
     void updateGameObjects(Time dt, vector<GameObject*>& gameObjects, Vector2f playerPosition);
+
+    void spawnGameObjects();
+    void spawn(string objectName, vector<GameObject*>& gameObjects);
 
     void updateHUD();
     void updateBackground(Time dt);

@@ -80,7 +80,7 @@ void Game::restart()
 
     player.reset();
 
-    totalDistance_ = 1984 * (level_ - 1);
+    totalDistance_ = 2666 * (level_ - 1);
 
     player.setPosition(resolution_.x / 2., resolution_.y / 2.);
 }

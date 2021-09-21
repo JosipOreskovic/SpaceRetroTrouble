@@ -20,10 +20,8 @@ void Mine::update(Time dt, Time totalTime)
 
     else
     {
-        if (explosionAnim_->update(dt, Vector2f(position_.x - 64, position_.y - 86)))
-        {
+        if (explosionAnim_->update(dt, Vector2f(position_.x - TILE_DIMENSION, position_.y - TILE_DIMENSION)))
             active_ = false;
-        }
     }
 }
 

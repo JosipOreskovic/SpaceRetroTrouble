@@ -34,28 +34,13 @@ void Game::update(Time dt) {
 
     if (state_ == State::Playing)
     {
+        // Collision check
+
         collision();
 
         // Spawn game objects from files
 
-        if (tiles_.empty() || levelChange_)
-            spawnTiles();
-        if (rockets_.empty() || levelChange_)
-            spawnRockets(dt);
-        if (fuelTanks_.empty() || levelChange_)
-            spawnFuelTanks(dt);
-        if (tanks_.empty() || levelChange_)
-            spawnTanks(dt);
-
-        if (level_ == 2 && mines_.empty())
-            spawnMines();
-        if (level_ == 3 && meteors_.empty())
-			spawnMeteors();
-        if (level_ == 4 && enemyFleet_.empty())
-			spawnEnemyFleet();
-
-        if (levelChange_)
-            levelChange_ = false;
+        spawnGameObjects();
 
         // Player update
 
@@ -89,7 +74,6 @@ void Game::update(Time dt) {
             updateGameObjects(dt,mines_);
         }
 
-
         updateGameObjects(dt, rockets_, player.getPosition());
         updateGameObjects(dt, tanks_, player.getPosition());
         updateGameObjects(dt, fuelTanks_);
@@ -98,11 +82,11 @@ void Game::update(Time dt) {
         background_.update(dt, resolution_);
 
         updateHUD();
-        totalDistance_ += 200 * dt.asSeconds();
+        totalDistance_ += GAME_SPEED * dt.asSeconds();
 
-        if (totalDistance_ > 1984 * level_)
+        if (totalDistance_ > LEVEL_DISTANCE * level_)
         {
-        	level_++;
+        	++level_;
             levelChange_ = true;
             if (level_ == 5)
                 state_ = State::Game_Over;
@@ -114,7 +98,7 @@ void Game::updateGameObjects(Time dt, vector<GameObject*>& gameObjects)
 {
     for (const auto& gameObject : gameObjects)
     {
-        if (gameObject->getPosition().x < -256 || gameObject->getPosition().y < 0)
+        if (gameObject->getPosition().x < -TILE_DIMENSION * 2 || gameObject->getPosition().y < 0)
         {
             gameObject->stop();
         }
@@ -127,7 +111,7 @@ void Game::updateGameObjects(Time dt, vector<GameObject*>& gameObjects, Vector2f
 {
     for (const auto& gameObject : gameObjects)
     {
-        if (gameObject->getPosition().x < -256 || gameObject->getPosition().y < 0)
+        if (gameObject->getPosition().x < -TILE_DIMENSION * 2 || gameObject->getPosition().y < 0)
         {
             gameObject->stop();
         }
