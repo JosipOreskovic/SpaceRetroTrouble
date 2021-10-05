@@ -15,11 +15,11 @@ public:
     void hit() override;
     void draw(RenderWindow& window) override;
 
-    GameObject*& getTankMissile();
+    shared_ptr<GameObject>& getTankMissile();
 
-    friend void removeObject(GameObject*& objects);
+    friend void removeObject(shared_ptr<GameObject>& objects);
 private:
-    GameObject* tankMissile_;
+    shared_ptr<GameObject> tankMissile_;
 
 };
 

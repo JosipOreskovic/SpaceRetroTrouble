@@ -2,7 +2,7 @@
 #include "Game.h"
 #include "TankMissile.h"
 
-void Game::detectCollision(Player& player, GameObject*& gameObject, Time totalTime, bool destruct)
+void Game::detectCollision(Player& player, shared_ptr<GameObject>& gameObject, Time totalTime, bool destruct)
 {
         if (player.getShipSprite().getGlobalBounds().intersects(gameObject->getSprite().getGlobalBounds()) && player.isActive() && gameObject->isActive())
         {
@@ -15,7 +15,7 @@ void Game::detectCollision(Player& player, GameObject*& gameObject, Time totalTi
 }
 
 
-void Game::detectCollision(Player& player, vector<GameObject*>& gameObjects, Time totalTime, bool destruct)
+void Game::detectCollision(Player& player, vector<shared_ptr<GameObject>>& gameObjects, Time totalTime, bool destruct)
 {
     for (const auto& gameObject : gameObjects)
     {
@@ -33,7 +33,7 @@ void Game::detectCollision(Player& player, vector<GameObject*>& gameObjects, Tim
 }
 
 
-void Game::detectCollision(const vector<GameObject*>& playerObjects, const vector<GameObject*>& gameObjects, Time totalTime,
+void Game::detectCollision(const vector<shared_ptr<GameObject>>& playerObjects, const vector<shared_ptr<GameObject>>& gameObjects, Time totalTime,
      bool destruct, int score, int fuel)
 {
     for (const auto& playerObject : playerObjects)

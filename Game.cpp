@@ -63,13 +63,13 @@ void Game::initialize()
 
 void Game::shutDown()
 {
-    deleteObjects(enemyFleet_);
-    deleteObjects(meteors_);
-    deleteObjects(rockets_);
-    deleteObjects(tanks_);
-    deleteObjects(fuelTanks_);
-    deleteObjects(tiles_);
-    deleteObjects(mines_);
+	enemyFleet_.clear();
+    meteors_.clear();
+    rockets_.clear();
+    tanks_.clear();
+    fuelTanks_.clear();
+    tiles_.clear();
+    mines_.clear();
 }
 
 void Game::restart()

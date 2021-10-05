@@ -94,7 +94,7 @@ void Game::update(Time dt) {
     }
 }
 
-void Game::updateGameObjects(Time dt, vector<GameObject*>& gameObjects)
+void Game::updateGameObjects(Time dt, vector<shared_ptr<GameObject>>& gameObjects)
 {
     for (const auto& gameObject : gameObjects)
     {
@@ -107,7 +107,7 @@ void Game::updateGameObjects(Time dt, vector<GameObject*>& gameObjects)
     }
 }
 
-void Game::updateGameObjects(Time dt, vector<GameObject*>& gameObjects, Vector2f playerPosition)
+void Game::updateGameObjects(Time dt, vector<shared_ptr<GameObject>>& gameObjects, Vector2f playerPosition)
 {
     for (const auto& gameObject : gameObjects)
     {

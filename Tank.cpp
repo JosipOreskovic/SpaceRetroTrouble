@@ -9,13 +9,10 @@
 Tank::Tank(float x, float y, float speed) : GameObject(x, y, speed)
 {
     sprite_ = Sprite(AssetManager::GetTexture("Assets/Graphics/Tank.png"));
-   /* position_.x = x;
-    position_.y = y;
-    speed_ = 200;*/
-    tankMissile_ = new TankMissile(position_.x, position_.y);
+    tankMissile_ = shared_ptr<TankMissile>(new TankMissile(position_.x, position_.y));
 }
 
-GameObject*& Tank::getTankMissile()
+shared_ptr<GameObject>& Tank::getTankMissile()
 {
     return tankMissile_;
 }
@@ -68,7 +65,7 @@ void Tank::draw(RenderWindow& window)
 void Tank::hit()
 {
     destroyed_ = true;
-    if (!((static_cast<TankMissile*>(tankMissile_))->isFlying()))
+    if (!((dynamic_pointer_cast<TankMissile>(tankMissile_))->isFlying()))
         tankMissile_->stop();
 }
 

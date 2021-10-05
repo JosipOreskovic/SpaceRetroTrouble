@@ -6,7 +6,6 @@
 #include "Animation.h"
 #include "Bomb.h"
 #include "Missile.h"
-#include "DeleteObjects.h"
 
 using namespace sf;
 using namespace std;
@@ -23,8 +22,8 @@ public:
     int getFuelLevel();
     void setFuelLevel(int fuel);
 
-	vector<GameObject*>& getMissiles();
-    vector<GameObject*>& getBombs();
+	vector<shared_ptr<GameObject>>& getMissiles();
+    vector<shared_ptr<GameObject>>& getBombs();
 
 	void setPosition(float x, float y);
     void reset();
@@ -52,8 +51,8 @@ public:
     bool isActive();
     void setActive();
 
-    friend void deleteObjects(vector<GameObject*>& objects);
-    friend void removeObjects(vector<GameObject*>& objects);
+    friend void deleteObjects(vector<shared_ptr<GameObject>>& objects);
+    friend void removeObjects(vector<shared_ptr<GameObject>>& objects);
 
 private:
     Vector2f position_;
@@ -80,8 +79,8 @@ private:
     bool leftPressed_;
     bool rightPressed_;
 
-    vector<GameObject*> bombs_;
-    vector<GameObject*> missiles_;
+    vector<shared_ptr<GameObject>> bombs_;
+    vector<shared_ptr<GameObject>> missiles_;
 
     bool newBomb_;
     Time lastBombTime_;

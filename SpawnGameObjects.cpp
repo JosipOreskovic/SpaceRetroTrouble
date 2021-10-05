@@ -22,7 +22,7 @@ void Game::spawnGameObjects()
         levelChange_ = false;
 }
 
-void Game::spawn(string objectName, vector<GameObject*>& gameObjects)
+void Game::spawn(string objectName, vector<shared_ptr<GameObject>>& gameObjects)
 {
     string fileName("Assets/Levels/Level" + to_string(level_) + "/" + objectName + ".txt");
     string s;
@@ -38,31 +38,31 @@ void Game::spawn(string objectName, vector<GameObject*>& gameObjects)
         {
             int type;
             ss >> type;
-            tiles_.push_back(new Tile(resolution_.x + pos.x * TILE_DIMENSION, resolution_.y - pos.y * TILE_DIMENSION, GAME_SPEED));
+            tiles_.push_back(shared_ptr<Tile>(new Tile(resolution_.x + pos.x * TILE_DIMENSION, resolution_.y - pos.y * TILE_DIMENSION, GAME_SPEED)));
             tiles_.back()->getSprite().setTexture(AssetManager::GetTexture("Assets/Graphics/Tiles/Level" + to_string(level_) + "/Tile" + to_string(type) + ".png"));
         }
 
 
         if (objectName == "Rockets")
         {
-            rockets_.push_back(new Rocket(resolution_.x + pos.x * TILE_DIMENSION, resolution_.y - pos.y * TILE_DIMENSION, GAME_SPEED));
+            rockets_.push_back(shared_ptr<Rocket>(new Rocket(resolution_.x + pos.x * TILE_DIMENSION, resolution_.y - pos.y * TILE_DIMENSION, GAME_SPEED)));
         }
 
 
         if (objectName == "PlasmaCannons")
         {
-            tanks_.push_back(new Tank(resolution_.x + pos.x * TILE_DIMENSION, resolution_.y - pos.y * TILE_DIMENSION, GAME_SPEED));
+            tanks_.push_back(shared_ptr<Tank>(new Tank(resolution_.x + pos.x * TILE_DIMENSION, resolution_.y - pos.y * TILE_DIMENSION, GAME_SPEED)));
         }
 
 
         if (objectName == "FuelTanks")
         {
-            fuelTanks_.push_back(new FuelTank(resolution_.x + pos.x * TILE_DIMENSION, resolution_.y - pos.y * TILE_DIMENSION, GAME_SPEED));
+            fuelTanks_.push_back(shared_ptr<FuelTank>(new FuelTank(resolution_.x + pos.x * TILE_DIMENSION, resolution_.y - pos.y * TILE_DIMENSION, GAME_SPEED)));
         }
 
         if (objectName == "Mines")
         {
-            mines_.push_back(new Mine(resolution_.x + pos.x * TILE_DIMENSION, pos.y * TILE_DIMENSION, GAME_SPEED));
+            mines_.push_back(shared_ptr<Mine>(new Mine(resolution_.x + pos.x * TILE_DIMENSION, pos.y * TILE_DIMENSION, GAME_SPEED)));
         }
 
 
@@ -70,14 +70,14 @@ void Game::spawn(string objectName, vector<GameObject*>& gameObjects)
         {
             float speed;
             ss >> speed;
-            meteors_.push_back(new Meteor(resolution_.x + pos.x * TILE_DIMENSION, pos.y * TILE_DIMENSION, speed));
+            meteors_.push_back(shared_ptr<Meteor>(new Meteor(resolution_.x + pos.x * TILE_DIMENSION, pos.y * TILE_DIMENSION, speed)));
         }
 
         if (objectName == "EnemyFleet")
         {
             float speed;
             ss >> speed;
-            enemyFleet_.push_back(new EnemyShip(resolution_.x + pos.x * TILE_DIMENSION, pos.y * TILE_DIMENSION, speed));
+            enemyFleet_.push_back(shared_ptr<EnemyShip>(new EnemyShip(resolution_.x + pos.x * TILE_DIMENSION, pos.y * TILE_DIMENSION, speed)));
         }
     }
 }

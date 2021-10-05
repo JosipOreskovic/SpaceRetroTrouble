@@ -27,7 +27,6 @@
 #include "FuelTank.h"
 #include "Mine.h"
 #include "TankMissile.h"
-#include "DeleteObjects.h"
 
 
 using namespace sf;
@@ -62,11 +61,11 @@ private:
     void spawnTanks(Time dt);
     void spawnFuelTanks(Time dt);
 
-    void updateGameObjects(Time dt, vector<GameObject*>& gameObjects);
-    void updateGameObjects(Time dt, vector<GameObject*>& gameObjects, Vector2f playerPosition);
+    void updateGameObjects(Time dt, vector<shared_ptr<GameObject>>& gameObjects);
+    void updateGameObjects(Time dt, vector<shared_ptr<GameObject>>& gameObjects, Vector2f playerPosition);
 
     void spawnGameObjects();
-    void spawn(string objectName, vector<GameObject*>& gameObjects);
+    void spawn(string objectName, vector<shared_ptr<GameObject>>& gameObjects);
 
     void updateHUD();
     void updateBackground(Time dt);
@@ -79,13 +78,13 @@ private:
     int getScore();
     void setScore(int score);
 
-    void detectCollision(Player& player, GameObject*& gameObject, Time totalTime, bool destruct);
-    void detectCollision(Player& player, vector<GameObject*>& gameObjects, Time totalTime, bool destruct);
-    void detectCollision(const vector<GameObject*>& playerObjects, const vector<GameObject*>& gameObjects, Time totalTime,
+    void detectCollision(Player& player, shared_ptr<GameObject>& gameObject, Time totalTime, bool destruct);
+    void detectCollision(Player& player, vector<shared_ptr<GameObject>>& gameObjects, Time totalTime, bool destruct);
+    void detectCollision(const vector<shared_ptr<GameObject>>& playerObjects, const vector<shared_ptr<GameObject>>& gameObjects, Time totalTime,
          bool destruct, int score, int fuel);
 
-    //friend void removeObjects(vector<GameObject*>& objects);
-    friend void deleteObjects(vector<GameObject*>& objects);
+    //friend void removeObjects(vector<shared_ptr<GameObject>>& objects);
+    friend void deleteObjects(vector<shared_ptr<GameObject>>& objects);
 
     // Private members
 
@@ -102,14 +101,14 @@ private:
 
     Background background_;
 
-    vector<GameObject*> enemyFleet_;
-    vector<GameObject*> meteors_;
-    vector<GameObject*> rockets_;
-    vector<GameObject*> tanks_;
-    vector<GameObject*> fuelTanks_;
-    vector<GameObject*> tiles_;
-    vector<vector<GameObject*>> tileSets_;
-    vector<GameObject*> mines_;
+    vector<shared_ptr<GameObject>> enemyFleet_;
+    vector<shared_ptr<GameObject>> meteors_;
+    vector<shared_ptr<GameObject>> rockets_;
+    vector<shared_ptr<GameObject>> tanks_;
+    vector<shared_ptr<GameObject>> fuelTanks_;
+    vector<shared_ptr<GameObject>> tiles_;
+    vector<vector<shared_ptr<GameObject>>> tileSets_;
+    vector<shared_ptr<GameObject>> mines_;
 
     Time lastEnemyShipTime_;
     Time lastMeteorTime_;

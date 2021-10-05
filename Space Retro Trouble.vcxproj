@@ -23,7 +23,6 @@
     <ClInclude Include="AssetManager.h" />
     <ClInclude Include="Background.h" />
     <ClInclude Include="Bomb.h" />
-    <ClInclude Include="DeleteObjects.h" />
     <ClInclude Include="EnemyShip.h" />
     <ClInclude Include="FuelTank.h" />
     <ClInclude Include="Game.h" />
@@ -45,7 +44,6 @@
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="Bomb.cpp" />
     <ClCompile Include="Collision.cpp" />
-    <ClCompile Include="DeleteObjects.cpp" />
     <ClCompile Include="detectCollision.cpp" />
     <ClCompile Include="Draw.cpp" />
     <ClCompile Include="EnemyShip.cpp" />

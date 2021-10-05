@@ -181,8 +181,8 @@ void Player::reset()
     fuelLevel_ = 100;
     outOfFuel_ = false;
 
-    deleteObjects(bombs_);
-    deleteObjects(missiles_);
+    bombs_.clear();
+    missiles_.clear();
  
     newBomb_ = false;
     newMissile_ = false;
@@ -258,11 +258,11 @@ void Player::draw(RenderWindow &window)
     }
 }
 
-vector<GameObject*>& Player::getMissiles()
+vector<shared_ptr<GameObject>>& Player::getMissiles()
 {
     return missiles_;
 }
-vector<GameObject*>& Player::getBombs()
+vector<shared_ptr<GameObject>>& Player::getBombs()
 {
     return bombs_;
 }
@@ -274,7 +274,7 @@ void Player::input(Event& event, Time totalTime)
         if (!newMissile_)
         {
             newMissile_ = true;
-            missiles_.push_back(new Missile(position_.x + TILE_DIMENSION, position_.y + TILE_DIMENSION / 4.));
+            missiles_.push_back(shared_ptr<Missile>(new Missile(position_.x + TILE_DIMENSION, position_.y + TILE_DIMENSION / 4.)));
             lastMissileTime_ = totalTime;
         }
     }
@@ -286,7 +286,7 @@ void Player::input(Event& event, Time totalTime)
         if (!newBomb_)
         {
             newBomb_ = true;
-            bombs_.push_back(new Bomb(position_.x, position_.y + TILE_DIMENSION / 4.));
+            bombs_.push_back(shared_ptr<Bomb>(new Bomb(position_.x, position_.y + TILE_DIMENSION / 4.)));
             lastBombTime_ = totalTime;
         }
     }
