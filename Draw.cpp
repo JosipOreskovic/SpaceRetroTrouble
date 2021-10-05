@@ -1,6 +1,7 @@
 //
 // Created by josip on 21.08.2021..
 //
+
 #include "Game.h"
 
 void Game::draw() {

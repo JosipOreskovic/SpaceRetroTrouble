@@ -80,19 +80,3 @@ SoundBuffer& AssetManager::GetSound(const string &filename) {
         return sound;
     }
 }
-
-/*Music &AssetManager::GetMusic(const string &filename) {
-
-    auto& m = instance->music;
-    auto keyValuePair = m.find(filename);
-    if (keyValuePair != m.end())
-    {
-        return keyValuePair->second;
-    }
-    else
-    {
-        auto& track = m[filename];
-        track.openFromFile(filename);
-        return track;
-    }
-}*/

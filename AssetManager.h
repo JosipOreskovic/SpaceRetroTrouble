@@ -23,7 +23,6 @@ public:
     static Texture& GetTexture(string const& filename);
     static Font& GetFont(string const& filename);
     static SoundBuffer& GetSound(string const& filename);
-    //static Music& GetMusic(string const& filename);
 
 private:
     // A map container from the STL,
@@ -31,7 +30,6 @@ private:
     map<string, Texture> textures_;
     map<string, Font> fonts_;
     map<string, SoundBuffer> sounds_;
-    //map<string, Music> music;
 
     // A pointer of the same type as the class itself
     // the one and only instance

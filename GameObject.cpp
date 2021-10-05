@@ -22,11 +22,6 @@ Sprite& GameObject::getSprite()
     return sprite_;
 }
 
-//void GameObject::setSprite(Sprite&)
-//{
-//    sprite = Sprite(AssetManager::GetTexture("Assets/Graphics/FuelTank.png"));
-//}
-
 Vector2f GameObject::getPosition()
 {
     return position_;

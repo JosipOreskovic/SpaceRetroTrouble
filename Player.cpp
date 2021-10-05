@@ -4,8 +4,6 @@
 
 #include "Player.h"
 
-
-
 Player::Player()
 {
     active_ = true;

@@ -13,7 +13,6 @@ Animation::Animation(string name, string textureFileName, Time duration, bool lo
 	textureFileName_ = textureFileName;
 
 	sprite_ = Sprite(AssetManager::GetTexture(textureFileName));
-	//this->sprite.setTextureRect(sf::IntRect(0, 0, spriteSize.x, spriteSize.y));
 }
 
 bool Animation::update(Time dt, Vector2f position)

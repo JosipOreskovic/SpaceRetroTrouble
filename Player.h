@@ -51,9 +51,6 @@ public:
     bool isActive();
     void setActive();
 
-    friend void deleteObjects(vector<shared_ptr<GameObject>>& objects);
-    friend void removeObjects(vector<shared_ptr<GameObject>>& objects);
-
 private:
     Vector2f position_;
     string name_;
