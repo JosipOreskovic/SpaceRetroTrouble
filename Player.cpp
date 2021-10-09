@@ -47,6 +47,7 @@ bool Player::update(Time dt, Time totalTime, Vector2f resolution)
     }
     else
     {
+        playerHitPosition_.x -= speed_ * dt.asSeconds();
         status =  explosionAnim_->update(dt, Vector2f(playerHitPosition_.x, playerHitPosition_.y));
     }
 

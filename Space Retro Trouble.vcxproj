@@ -44,7 +44,7 @@
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="Bomb.cpp" />
     <ClCompile Include="Collision.cpp" />
-    <ClCompile Include="detectCollision.cpp" />
+    <ClCompile Include="DetectCollision.cpp" />
     <ClCompile Include="Draw.cpp" />
     <ClCompile Include="EnemyShip.cpp" />
     <ClCompile Include="FuelTank.cpp" />

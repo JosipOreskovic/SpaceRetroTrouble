@@ -16,9 +16,10 @@ FuelTank::FuelTank(float x, float y, float speed) : GameObject(x, y, speed)
 
 void FuelTank::update(Time dt, Time totalTime)
 {
+    position_.x -= speed_ * dt.asSeconds();
+
     if (!destroyed_)
     {
-        position_.x -= speed_ * dt.asSeconds();
         sprite_.setPosition(position_.x, position_.y);
     }
 	else

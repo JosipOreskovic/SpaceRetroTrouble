@@ -22,6 +22,8 @@ void Meteor::update(Time dt, Time totalTime)
     }
     else
     {
+        position_.x -= GAME_SPEED * dt.asSeconds();
+
 		if (explosionAnim_->update(dt, Vector2f(position_.x, position_.y)))
 		{
 			active_ = false;

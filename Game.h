@@ -47,6 +47,7 @@ private:
     void input();
     void update(Time dt);
     void draw();
+    void lateUpdate();
     void initialize();
     void shutDown();
     void restart();
@@ -78,9 +79,9 @@ private:
     int getScore();
     void setScore(int score);
 
-    void detectCollision(Player& player, shared_ptr<GameObject>& gameObject, Time totalTime, bool destruct);
-    void detectCollision(Player& player, vector<shared_ptr<GameObject>>& gameObjects, Time totalTime, bool destruct);
-    void detectCollision(const vector<shared_ptr<GameObject>>& playerObjects, const vector<shared_ptr<GameObject>>& gameObjects, Time totalTime,
+    void DetectCollision(Player& player, shared_ptr<GameObject>& gameObject, Time totalTime, bool destruct);
+    void DetectCollision(Player& player, vector<shared_ptr<GameObject>>& gameObjects, Time totalTime, bool destruct);
+    void DetectCollision(const vector<shared_ptr<GameObject>>& playerObjects, const vector<shared_ptr<GameObject>>& gameObjects, Time totalTime,
          bool destruct, int score, int fuel);
 
     //friend void removeObjects(vector<shared_ptr<GameObject>>& objects);
@@ -121,6 +122,7 @@ private:
     Time totalTime_;
     float totalDistance_ = 0.0;
     bool levelChange_ = false;
+    bool levelRestart_ = false;
 
     int score_;
     int hiScore_;

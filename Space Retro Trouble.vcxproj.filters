@@ -86,7 +86,7 @@
     <ClCompile Include="Collision.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="detectCollision.cpp">
+    <ClCompile Include="DetectCollision.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Draw.cpp">

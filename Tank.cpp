@@ -19,9 +19,10 @@ shared_ptr<GameObject>& Tank::getTankMissile()
 
 void Tank::update(Time dt, Time totalTime, Vector2f playerPosition)
 {
+    position_.x -= speed_ * dt.asSeconds();
+
     if (!destroyed_)
     {
-        position_.x -= speed_ * dt.asSeconds();
         sprite_.setPosition(position_.x , position_.y);
     }
 	else

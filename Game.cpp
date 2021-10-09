@@ -32,8 +32,27 @@ void Game::run()
         input();
         update(dt);
         draw();
+        lateUpdate();
     }
     window_.close();
+}
+
+void Game::lateUpdate()
+{
+	if (levelRestart_)
+	{
+          if (lives_ > 0)
+          {
+              shutDown();
+              restart();
+          }
+          else
+          {
+              state_ = State::Game_Over;
+          }
+
+          levelRestart_ = false;
+	}
 }
 
 void Game::initialize()

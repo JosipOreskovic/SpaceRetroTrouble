@@ -44,18 +44,7 @@ void Game::update(Time dt) {
 
         // Player update
 
-        if (player.update(dt, totalTime_, resolution_))
-        {
-            if (lives_ > 0)
-            {
-                shutDown();
-                restart();
-            }
-            else
-            {
-                state_ = State::Game_Over;
-            }
-        }
+        levelRestart_ = player.update(dt, totalTime_, resolution_);
 
         // Game objects update
 

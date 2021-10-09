@@ -17,11 +17,13 @@ Rocket::Rocket(float x, float y, float speed) : GameObject(x, y, speed)
 
 void Rocket::update(Time dt, Time totalTime, Vector2f playerPosition)
 {
+    position_.x -= speed_ * dt.asSeconds();
+
     if (!destroyed_)
     {
         if (!flying_)
         {
-            position_.x -= speed_ * dt.asSeconds();
+           
             if (position_.x < playerPosition.x + 500)
             {
                 flying_ = true;
@@ -29,7 +31,6 @@ void Rocket::update(Time dt, Time totalTime, Vector2f playerPosition)
         }
         else
         {
-            position_.x -= speed_ * dt.asSeconds();
             position_.y -= speed_ * dt.asSeconds();
         }
     }
