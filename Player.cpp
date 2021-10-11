@@ -9,7 +9,7 @@ Player::Player()
     active_ = true;
     fuelLevel_ = 100;
     outOfFuel_ = false;
-    speed_ = 200.;
+    speed_ = 200.0f;
 
     newBomb_ = false;
     newMissile_ = false;
@@ -70,28 +70,28 @@ void Player::updateShip(Time dt, Vector2f resolution)
         if (upPressed_)
         {
             position_.y -= speed_ * dt.asSeconds();
-            if (position_.y < 100)
-                position_.y = 100;
+            if (position_.y < TILE_DIMENSION * 2.0f)
+                position_.y = TILE_DIMENSION * 2.0f;
         }
 
         if (downPressed_)
         {
             position_.y += speed_ * dt.asSeconds();
-            if (position_.y > resolution.y - 100)
-                position_.y = resolution.y - 100;
+            if (position_.y > resolution.y - TILE_DIMENSION / 2.0f)
+                position_.y = resolution.y - TILE_DIMENSION / 2.0f;
         }
 
         if (leftPressed_)
         {
             position_.x -= speed_ * dt.asSeconds();
-            if (position_.x < 0)
-                position_.x = 0;
+            if (position_.x < TILE_DIMENSION * 2.0f)
+                position_.x = TILE_DIMENSION * 2.0f;
         }
         if (rightPressed_)
         {
             position_.x += speed_ * dt.asSeconds();
-            if (position_.x > resolution.x - 200)
-                position_.x = resolution.x - 200;
+            if (position_.x > resolution.x - TILE_DIMENSION * 2.0f)
+                position_.x = resolution.x - TILE_DIMENSION * 2.0f;
         }
     }
     else
@@ -247,8 +247,10 @@ void Player::draw(RenderWindow &window)
 
     for (auto &bomb : bombs_)
     {
-        if (bomb->isActive())
-            window.draw(bomb->getSprite());
+       
+       if (bomb->isActive())
+           bomb->draw(window);
+    		//window.draw(bomb->getSprite());*/
     }
     for (auto &missile : missiles_)
     {
@@ -285,7 +287,7 @@ void Player::input(Event& event, Time totalTime)
         if (!newBomb_)
         {
             newBomb_ = true;
-            bombs_.push_back(shared_ptr<Bomb>(new Bomb(position_.x, position_.y + TILE_DIMENSION / 4.)));
+            bombs_.push_back(shared_ptr<Bomb>(new Bomb(position_.x, position_.y + TILE_DIMENSION / 4.0f, 300)));
             lastBombTime_ = totalTime;
         }
     }

@@ -9,10 +9,7 @@
 Rocket::Rocket(float x, float y, float speed) : GameObject(x, y, speed)
 {
     sprite_ = Sprite(AssetManager::GetTexture("Assets/Graphics/Rocket.png"));
-  /*  position_.x = x;
-    position_.y = y;*/
     flying_ = false;
-    //speed_ = 200;
 }
 
 void Rocket::update(Time dt, Time totalTime, Vector2f playerPosition)

@@ -42,7 +42,7 @@ void Tank::update(Time dt, Time totalTime, Vector2f playerPosition)
 void Tank::updateTankMissile(Time dt, Time totalTime, Vector2f playerPosition)
 {
     tankMissile_->update(dt, playerPosition);
-    if (tankMissile_->getPosition().x < 0 || tankMissile_->getPosition().y < 0)
+    if (tankMissile_->getPosition().x < -TILE_DIMENSION * 2 || tankMissile_->getPosition().y < 0)
     {
         tankMissile_->stop();
     }

@@ -16,7 +16,6 @@ GameObject::GameObject(float x, float y, float speed) : position_(Vector2f(x,y))
 								Vector2f(position_.x, position_.y), Vector2f(0, 0), Vector2i(128, 128), 10);
 }
 
-
 Sprite& GameObject::getSprite()
 {
     return sprite_;
@@ -46,6 +45,11 @@ void GameObject::setSpeed(float speed)
 bool GameObject::isActive() const
 {
     return active_;
+}
+
+bool GameObject::isDestroyed() const
+{
+    return destroyed_;
 }
 
 int GameObject::getScore()

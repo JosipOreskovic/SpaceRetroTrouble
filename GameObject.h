@@ -6,6 +6,7 @@
 
 #include "AssetManager.h"
 #include "Animation.h"
+#include "SoundManager.h"
 
 using namespace sf;
 using namespace std;
@@ -27,6 +28,7 @@ public:
     void setSpeed(float speed);
 
     bool isActive() const;
+    bool isDestroyed() const;
 
     int getScore();
 
