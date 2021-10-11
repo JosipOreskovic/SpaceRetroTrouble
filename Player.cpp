@@ -250,7 +250,6 @@ void Player::draw(RenderWindow &window)
        
        if (bomb->isActive())
            bomb->draw(window);
-    		//window.draw(bomb->getSprite());*/
     }
     for (auto &missile : missiles_)
     {
@@ -275,7 +274,7 @@ void Player::input(Event& event, Time totalTime)
         if (!newMissile_)
         {
             newMissile_ = true;
-            missiles_.push_back(shared_ptr<Missile>(new Missile(position_.x + TILE_DIMENSION, position_.y + TILE_DIMENSION / 4.)));
+            missiles_.push_back(shared_ptr<Missile>(new Missile(position_.x + TILE_DIMENSION, position_.y + TILE_DIMENSION / 4., 600)));
             lastMissileTime_ = totalTime;
         }
     }

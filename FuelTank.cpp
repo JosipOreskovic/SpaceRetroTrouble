@@ -8,10 +8,7 @@
 FuelTank::FuelTank(float x, float y, float speed) : GameObject(x, y, speed)
 {
     sprite_ = Sprite(AssetManager::GetTexture("Assets/Graphics/FuelTank.png"));
-   /* position_.x = x;
-    position_.y = y;*/
     active_ = true;
-    //speed_ = 200;
 }
 
 void FuelTank::update(Time dt, Time totalTime)

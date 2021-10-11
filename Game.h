@@ -79,7 +79,7 @@ private:
     int getScore();
     void setScore(int score);
 
-    void DetectCollision(Player& player, shared_ptr<GameObject>& gameObject, Time totalTime, bool destruct);
+    void DetectCollision(Player& player, const shared_ptr<GameObject>& gameObject, Time totalTime, bool destruct);
     void DetectCollision(Player& player, vector<shared_ptr<GameObject>>& gameObjects, Time totalTime, bool destruct);
     void DetectCollision(const vector<shared_ptr<GameObject>>& playerObjects, const vector<shared_ptr<GameObject>>& gameObjects, Time totalTime,
          bool destruct, int score, int fuel);

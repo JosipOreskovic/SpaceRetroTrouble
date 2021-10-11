@@ -6,12 +6,8 @@
 
 #include "Bomb.h"
 
-Missile::Missile(float x, float y)
+Missile::Missile(float x, float y, float speed) : GameObject(x, y, speed)
 {
-    position_.x = x;
-    position_.y = y;
-    destroyed_ = false;
-    speed_ = 600;
     sprite_ = Sprite(AssetManager::GetTexture("Assets/Graphics/Missile.png"));
     sprite_.setOrigin(sprite_.getLocalBounds().width / 2., sprite_.getLocalBounds().height / 2.);
 }

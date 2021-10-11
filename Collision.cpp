@@ -10,10 +10,8 @@ void Game::collision()
     const vector<shared_ptr<GameObject>>& bombs = player.getBombs();
     const vector<shared_ptr<GameObject>>& missiles = player.getMissiles();
 
-    for (auto& tank : tanks_)
-    {
-        DetectCollision(player, dynamic_pointer_cast<Tank>(tank)->getTankMissile(), totalTime_, true);
-    }
+    for_each(tanks_.begin(), tanks_.end(), [&](auto& tank) 
+        { DetectCollision(player, dynamic_pointer_cast<Tank>(tank)->getTankMissile(), totalTime_, true); });
 
     DetectCollision(player, enemyFleet_, totalTime_, true);
 

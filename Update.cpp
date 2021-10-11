@@ -85,28 +85,31 @@ void Game::update(Time dt) {
 
 void Game::updateGameObjects(Time dt, vector<shared_ptr<GameObject>>& gameObjects)
 {
-    for (const auto& gameObject : gameObjects)
-    {
-        if (gameObject->getPosition().x < -TILE_DIMENSION * 2 || gameObject->getPosition().y < 0)
+    for_each(gameObjects.begin(), gameObjects.end(), [&](auto& gameObject)
         {
-            gameObject->stop();
+            if (gameObject->getPosition().x < -TILE_DIMENSION * 2 || gameObject->getPosition().y < 0)
+            {
+                gameObject->stop();
+            }
+            if (gameObject->isActive())
+                gameObject->update(dt, totalTime_);
         }
-        if (gameObject->isActive())
-            gameObject->update(dt, totalTime_);
-    }
+    );
 }
 
 void Game::updateGameObjects(Time dt, vector<shared_ptr<GameObject>>& gameObjects, Vector2f playerPosition)
 {
-    for (const auto& gameObject : gameObjects)
-    {
-        if (gameObject->getPosition().x < -TILE_DIMENSION * 2 || gameObject->getPosition().y < 0)
+
+    for_each(gameObjects.begin(), gameObjects.end(), [&](auto& gameObject)
         {
-            gameObject->stop();
+            if (gameObject->getPosition().x < -TILE_DIMENSION * 2 || gameObject->getPosition().y < 0)
+            {
+                gameObject->stop();
+            }
+            if (gameObject->isActive())
+                gameObject->update(dt, totalTime_, playerPosition);
         }
-        if (gameObject->isActive())
-            gameObject->update(dt, totalTime_, playerPosition);
-    }
+    );
 }
 
 void Game::updateHUD()

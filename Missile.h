@@ -9,7 +9,7 @@
 class Missile : public GameObject
 {
 public:
-    Missile(float x, float y);
+    Missile(float x, float y, float speed);
     void hit();
     void update(Time dt) override;
 };
