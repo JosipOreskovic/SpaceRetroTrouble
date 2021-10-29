@@ -9,7 +9,7 @@
 class Rocket : public GameObject
 {
 public:
-    Rocket(float x, float y, float speed);
+    Rocket(float x, float y, float speed, bool destructible, int score, int fuel);
     void update(Time dt, Time totalTime, Vector2f playerPosition) override;
 private:
     bool flying_;

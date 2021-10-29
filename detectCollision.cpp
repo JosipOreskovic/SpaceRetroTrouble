@@ -2,13 +2,13 @@
 #include "Game.h"
 #include "TankMissile.h"
 
-void Game::DetectCollision(Player& player, const shared_ptr<GameObject>& gameObject, Time totalTime, bool destruct)
+void Game::DetectCollision(Player& player, const shared_ptr<GameObject>& gameObject, Time totalTime)
 {
         if (player.getShipSprite().getGlobalBounds().intersects(gameObject->getSprite().getGlobalBounds()) && player.isActive() && gameObject->isActive())
         {
             player.hit(player.getPosition(), totalTime);
             soundManager_.playPlayerExplosionSound();
-            if (destruct)
+            if (gameObject->isDestructible())
             {
                 gameObject->hit();
                 soundManager_.playObjectExplosionSound();
@@ -18,16 +18,15 @@ void Game::DetectCollision(Player& player, const shared_ptr<GameObject>& gameObj
 }
 
 
-void Game::DetectCollision(Player& player, vector<shared_ptr<GameObject>>& gameObjects, Time totalTime, bool destruct)
+void Game::DetectCollision(Player& player, vector<shared_ptr<GameObject>>& gameObjects, Time totalTime)
 {
-    for_each(gameObjects.begin(), gameObjects.end(), [&](auto& gameObject) { DetectCollision(player, gameObject, totalTime_, destruct); });
+    for_each(gameObjects.begin(), gameObjects.end(), [&](auto& gameObject) { DetectCollision(player, gameObject, totalTime); });
 }
 
 
 
 
-void Game::DetectCollision(const vector<shared_ptr<GameObject>>& playerObjects, const vector<shared_ptr<GameObject>>& gameObjects, Time totalTime,
-     bool destruct, int score, int fuel)
+void Game::DetectCollision(const vector<shared_ptr<GameObject>>& playerObjects, const vector<shared_ptr<GameObject>>& gameObjects, Time totalTime)
 {
     for (const auto& playerObject : playerObjects)
     {
@@ -39,12 +38,12 @@ void Game::DetectCollision(const vector<shared_ptr<GameObject>>& playerObjects, 
                 if(playerObject->isActive())
                     soundManager_.playObjectExplosionSound();
                 
-                if (destruct)
+                if (gameObject->isDestructible())
                 {
                     gameObject->hit();
                     soundManager_.playObjectExplosionSound();
-                    score_ += score;
-                    player.setFuelLevel(fuel);
+                    score_ += gameObject->getScore();
+                    player.setFuelLevel(gameObject->getFuel());
                 }
             }
         }

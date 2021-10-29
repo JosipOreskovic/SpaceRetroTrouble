@@ -274,7 +274,7 @@ void Player::input(Event& event, Time totalTime)
         if (!newMissile_)
         {
             newMissile_ = true;
-            missiles_.push_back(shared_ptr<Missile>(new Missile(position_.x + TILE_DIMENSION, position_.y + TILE_DIMENSION / 4., 600)));
+            missiles_.push_back(shared_ptr<Missile>(new Missile(position_.x + TILE_DIMENSION, position_.y + TILE_DIMENSION / 4., 600, false, 0, 0)));
             lastMissileTime_ = totalTime;
         }
     }
@@ -286,7 +286,7 @@ void Player::input(Event& event, Time totalTime)
         if (!newBomb_)
         {
             newBomb_ = true;
-            bombs_.push_back(shared_ptr<Bomb>(new Bomb(position_.x, position_.y + TILE_DIMENSION / 4.0f, 300)));
+            bombs_.push_back(shared_ptr<Bomb>(new Bomb(position_.x, position_.y + TILE_DIMENSION / 4.0f, 300, true, 0, 0)));
             lastBombTime_ = totalTime;
         }
     }

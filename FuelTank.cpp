@@ -5,7 +5,7 @@
 #include "FuelTank.h"
 
 
-FuelTank::FuelTank(float x, float y, float speed) : GameObject(x, y, speed)
+FuelTank::FuelTank(float x, float y, float speed, bool destructible, int score, int fuel) : GameObject(x, y, speed, destructible, score, fuel)
 {
     sprite_ = Sprite(AssetManager::GetTexture("Assets/Graphics/FuelTank.png"));
     active_ = true;

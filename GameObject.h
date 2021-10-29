@@ -15,7 +15,7 @@ class GameObject
 {
 public:
     GameObject();
-    GameObject(float x, float y, float speed);
+    GameObject(float x, float y, float speed, bool destructible, int score, int fuel);
     virtual ~GameObject() = default;
 
     Sprite& getSprite();
@@ -31,6 +31,8 @@ public:
     bool isDestroyed() const;
 
     int getScore();
+    int getFuel();
+    bool isDestructible();
 
     void start();
     void stop();
@@ -48,8 +50,10 @@ protected:
     Vector2f position_;
     bool active_;
     float speed_;
-    int score_;
     bool destroyed_;
+    bool destructible_;
+    int score_;
+    int fuel_;
 
     Animation* explosionAnim_;
 };

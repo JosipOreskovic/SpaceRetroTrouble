@@ -4,7 +4,7 @@
 
 #include "Tile.h"
 
-Tile::Tile(float x, float y, float speed) : GameObject(x, y, speed) {}
+Tile::Tile(float x, float y, float speed, bool destructible, int score, int fuel) : GameObject(x, y, speed, destructible, score, fuel) {}
 
 void Tile::update(Time dt, Time totalTime)
 {

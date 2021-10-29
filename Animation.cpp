@@ -21,10 +21,10 @@ bool Animation::update(Time dt, Vector2f position)
 
 	int animFrame = static_cast<int>((elapsedTime_.asSeconds() / duration_.asSeconds()) * framesNum_) % framesNum_;
 	
-	sprite_.setTextureRect(sf::IntRect(animFrame * spriteSize_.x, 0, spriteSize_.x, spriteSize_.y));
+	sprite_.setTextureRect(sf::IntRect(animFrame * spriteSize_.x, 0.0f, spriteSize_.x, spriteSize_.y));
 
 	sprite_.setPosition(position);
-	sprite_.setOrigin(sprite_.getLocalBounds().width / 2., sprite_.getLocalBounds().height / 2.);
+	sprite_.setOrigin(sprite_.getLocalBounds().width / 2.0f, sprite_.getLocalBounds().height / 2.0f);
 
 	if (!loop_ && (animFrame == (framesNum_ - 1)))
 	{
@@ -41,5 +41,5 @@ Sprite& Animation::getSprite()
 
 void Animation::resetElapsedTime()
 {
-	elapsedTime_ = seconds(0.0);
+	elapsedTime_ = seconds(0.0f);
 }

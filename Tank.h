@@ -9,7 +9,7 @@
 class Tank : public GameObject
 {
 public:
-    Tank(float x, float y, float speed);
+    Tank(float x, float y, float speed, bool destructible, int score, int fuel);
     void update(Time dt, Time totalTime, Vector2f playerPosition) override;
     void updateTankMissile(Time dt, Time totalTime, Vector2f playerPosition);
     void hit() override;

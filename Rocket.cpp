@@ -6,7 +6,7 @@
 #include "Player.h"
 #include "Tile.h"
 
-Rocket::Rocket(float x, float y, float speed) : GameObject(x, y, speed)
+Rocket::Rocket(float x, float y, float speed, bool destructible, int score, int fuel) : GameObject(x, y, speed, destructible, score, fuel)
 {
     sprite_ = Sprite(AssetManager::GetTexture("Assets/Graphics/Rocket.png"));
     flying_ = false;

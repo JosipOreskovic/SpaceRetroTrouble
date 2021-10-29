@@ -79,10 +79,9 @@ private:
     int getScore();
     void setScore(int score);
 
-    void DetectCollision(Player& player, const shared_ptr<GameObject>& gameObject, Time totalTime, bool destruct);
-    void DetectCollision(Player& player, vector<shared_ptr<GameObject>>& gameObjects, Time totalTime, bool destruct);
-    void DetectCollision(const vector<shared_ptr<GameObject>>& playerObjects, const vector<shared_ptr<GameObject>>& gameObjects, Time totalTime,
-         bool destruct, int score, int fuel);
+    void DetectCollision(Player& player, const shared_ptr<GameObject>& gameObject, Time totalTime);
+    void DetectCollision(Player& player, vector<shared_ptr<GameObject>>& gameObjects, Time totalTime);
+    void DetectCollision(const vector<shared_ptr<GameObject>>& playerObjects, const vector<shared_ptr<GameObject>>& gameObjects, Time totalTime);
 
     //friend void removeObjects(vector<shared_ptr<GameObject>>& objects);
     friend void deleteObjects(vector<shared_ptr<GameObject>>& objects);
@@ -120,7 +119,7 @@ private:
 
     Vector2f resolution_;
     Time totalTime_;
-    float totalDistance_ = 0.0;
+    float totalDistance_ = 0.0f;
     bool levelChange_ = false;
     bool levelRestart_ = false;
 

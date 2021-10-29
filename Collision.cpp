@@ -11,47 +11,47 @@ void Game::collision()
     const vector<shared_ptr<GameObject>>& missiles = player.getMissiles();
 
     for_each(tanks_.begin(), tanks_.end(), [&](auto& tank) 
-        { DetectCollision(player, dynamic_pointer_cast<Tank>(tank)->getTankMissile(), totalTime_, true); });
+        { DetectCollision(player, dynamic_pointer_cast<Tank>(tank)->getTankMissile(), totalTime_); });
 
-    DetectCollision(player, enemyFleet_, totalTime_, true);
+    DetectCollision(player, enemyFleet_, totalTime_);
 
-    DetectCollision(player, tanks_, totalTime_, true);
+    DetectCollision(player, tanks_, totalTime_);
 
-    DetectCollision(player, fuelTanks_, totalTime_, true);
+    DetectCollision(player, fuelTanks_, totalTime_);
 
-    DetectCollision(player, meteors_, totalTime_, true);
+    DetectCollision(player, meteors_, totalTime_);
 
-    DetectCollision(player, mines_, totalTime_, true);
+    DetectCollision(player, mines_, totalTime_);
 
-    DetectCollision(player, rockets_, totalTime_, true);
+    DetectCollision(player, rockets_, totalTime_);
 
-    DetectCollision(player, tiles_, totalTime_, false);
+    DetectCollision(player, tiles_, totalTime_);
 
-    DetectCollision(missiles, enemyFleet_, totalTime_, true, 10, 0);
+    DetectCollision(missiles, enemyFleet_, totalTime_);
 
-    DetectCollision(missiles, meteors_, totalTime_, true, 10, 0);
+    DetectCollision(missiles, meteors_, totalTime_);
 
-    DetectCollision(missiles, mines_, totalTime_, true, 10, 0);
+    DetectCollision(missiles, mines_, totalTime_);
 
-    DetectCollision(missiles, rockets_, totalTime_, true, 10, 0);
+    DetectCollision(missiles, rockets_, totalTime_);
 
-    DetectCollision(missiles, tiles_, totalTime_, false, 10, 0);
+    DetectCollision(missiles, tiles_, totalTime_);
 
-    DetectCollision(missiles, tanks_, totalTime_, true, 10, 0);
+    DetectCollision(missiles, tanks_, totalTime_);
 
-    DetectCollision(missiles, fuelTanks_, totalTime_, true, 10, 10);
+    DetectCollision(missiles, fuelTanks_, totalTime_);
 
-    DetectCollision(bombs, enemyFleet_, totalTime_, true, 10, 0);
+    DetectCollision(bombs, enemyFleet_, totalTime_);
 
-    DetectCollision(bombs, meteors_, totalTime_, true, 10, 0);
+    DetectCollision(bombs, meteors_, totalTime_);
 
-    DetectCollision(bombs, mines_, totalTime_, true, 10, 0);
+    DetectCollision(bombs, mines_, totalTime_);
 
-    DetectCollision(bombs, rockets_, totalTime_, true, 10, 0);
+    DetectCollision(bombs, rockets_, totalTime_);
 
-    DetectCollision(bombs, tiles_, totalTime_, false, 10, 0);
+    DetectCollision(bombs, tiles_, totalTime_);
 
-    DetectCollision(bombs, tanks_, totalTime_, true, 10, 0);
+    DetectCollision(bombs, tanks_, totalTime_);
 
-    DetectCollision(bombs, fuelTanks_, totalTime_, true, 10, 10);
+    DetectCollision(bombs, fuelTanks_, totalTime_);
 }

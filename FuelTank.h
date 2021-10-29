@@ -10,7 +10,7 @@ class FuelTank : public GameObject
 {
 public:
 
-    FuelTank(float x, float y, float speed);
+    FuelTank(float x, float y, float speed, bool destructible, int score, int fuel);
     void update(Time dt, Time totalTime) override;
 private:
     int fuel_;

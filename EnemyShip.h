@@ -9,7 +9,7 @@ class EnemyShip : public GameObject
 {
 public:
 
-    EnemyShip(float x, float y, float speed);
+    EnemyShip(float x, float y, float speed, bool destructible, int score, int fuel);
 
     void update(Time dt, Time totalTime) override;
 private:

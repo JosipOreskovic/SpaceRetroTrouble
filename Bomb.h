@@ -10,7 +10,7 @@ class Bomb : public GameObject
 {
 public:
 
-    Bomb(float x, float y, float speed);
+    Bomb(float x, float y, float speed, bool destructible, int score, int fuel);
     //void hit();
     void update(Time dt) override;
 private:

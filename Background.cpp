@@ -15,10 +15,10 @@ Background::Background()
 
 void Background::update(Time dt, Vector2f resolution)
 {
-    position_.x -= 100 * dt.asSeconds();
+    position_.x -= BACKGROUND_SPEED * dt.asSeconds();
     if (position_.x  < -resolution.x)
     {
-        position_.x  = 0.0;
+        position_.x  = 0.0f;
         order_ = !order_;
     }
 }
@@ -26,9 +26,9 @@ void Background::update(Time dt, Vector2f resolution)
 void Background::draw(RenderWindow &window, Vector2f resolution)
 {
     sprite_.setTexture(*textures_[order_]);
-    sprite_.setPosition(position_.x,0);
+    sprite_.setPosition(position_.x,0.0f);
     window.draw(sprite_);
     sprite_.setTexture(*textures_[!order_]);
-    sprite_.setPosition(resolution.x + position_.x, 0);
+    sprite_.setPosition(resolution.x + position_.x, 0.0f);
     window.draw(sprite_);
 }

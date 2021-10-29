@@ -7,13 +7,16 @@
 GameObject::GameObject() : destroyed_(false), active_(true)
 {
     explosionAnim_ = new Animation("ObjectExplosion", "Assets/Graphics/ObjectExplosion.png", seconds(1), false,
-								Vector2f(position_.x, position_.y), Vector2f(0, 0), Vector2i(128, 128), 10);
+		Vector2f(position_.x, position_.y), Vector2f(0, 0),
+        Vector2i(EXPLOSION_SPRITE_DIMENSION, EXPLOSION_SPRITE_DIMENSION), 10);
 }
 
-GameObject::GameObject(float x, float y, float speed) : position_(Vector2f(x,y)), speed_(speed), destroyed_(false), active_(true)
+GameObject::GameObject(float x, float y, float speed, bool destructible, int score, int fuel) : position_(Vector2f(x,y)), speed_(speed), destructible_(destructible),
+	score_(score), fuel_(fuel), destroyed_(false), active_(true)
 {
-    explosionAnim_ = new Animation("ObjectExplosion", "Assets/Graphics/ObjectExplosion.png", seconds(1), false,
-								Vector2f(position_.x, position_.y), Vector2f(0, 0), Vector2i(128, 128), 10);
+    explosionAnim_ = new Animation("ObjectExplosion", "Assets/Graphics/ObjectExplosion.png", seconds(0.5f), false,
+		Vector2f(position_.x, position_.y), Vector2f(0, 0),
+        Vector2i(EXPLOSION_SPRITE_DIMENSION, EXPLOSION_SPRITE_DIMENSION), 10);
 }
 
 Sprite& GameObject::getSprite()
@@ -55,6 +58,16 @@ bool GameObject::isDestroyed() const
 int GameObject::getScore()
 {
     return score_;
+}
+
+int GameObject::getFuel()
+{
+    return fuel_;
+}
+
+bool GameObject::isDestructible()
+{
+    return  destructible_;
 }
 
 void GameObject::start()

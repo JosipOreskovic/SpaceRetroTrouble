@@ -12,9 +12,11 @@ using namespace std;
 
 // Global game constants
 
-const float LEVEL_DISTANCE = 2666;
-const float GAME_SPEED = 200;
-const float TILE_DIMENSION = 64;
+const float LEVEL_DISTANCE = 2666.0f;
+const float GAME_SPEED = 200.0f;
+const float BACKGROUND_SPEED = 100.0f;
+const float TILE_DIMENSION = 64.0f;
+const float EXPLOSION_SPRITE_DIMENSION = 128.0f;
 
 
 class AssetManager {

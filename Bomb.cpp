@@ -4,11 +4,11 @@
 
 #include "Bomb.h"
 
-Bomb::Bomb(float x, float y, float speed) : GameObject(x, y, speed)
+Bomb::Bomb(float x, float y, float speed, bool destructible, int score, int fuel) : GameObject(x, y, speed, destructible, score, fuel)
 {
-    angle_ = 0.0;
-    gravity_ = 1.3;
-    rotationSpeed_ = 50;
+    angle_ = 0.0f;
+    gravity_ = 1.3f;
+    rotationSpeed_ = 50.0f;
     sprite_ = Sprite(AssetManager::GetTexture("Assets/Graphics/Bomb.png"));
     sprite_.setOrigin(sprite_.getLocalBounds().width / 2., sprite_.getLocalBounds().height / 2.);
 }
@@ -20,8 +20,8 @@ void Bomb::update(Time dt)
         position_.x += speed_ * dt.asSeconds();
         position_.y += speed_ * gravity_ * dt.asSeconds();
         angle_ += rotationSpeed_ * dt.asSeconds();
-        if (angle_ > 90)
-            angle_ = 90;
+        if (angle_ > 90.0f)
+            angle_ = 90.0f;
 
    
     }

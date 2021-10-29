@@ -5,7 +5,7 @@
 #include "Mine.h"
 #include "Game.h"
 
-Mine::Mine(float x, float y, float speed) : GameObject(x,y,speed)
+Mine::Mine(float x, float y, float speed, bool destructible, int score, int fuel) : GameObject(x,y,speed, destructible, score, fuel)
 {
    sprite_ = Sprite(AssetManager::GetTexture("Assets/Graphics/Mine.png"));
    sprite_.setOrigin(sprite_.getLocalBounds().width / 2., sprite_.getLocalBounds().height / 2.);

@@ -8,7 +8,7 @@
 class Meteor : public GameObject
 {
 public:
-    Meteor(float x, float y, float speed);
+    Meteor(float x, float y, float speed, bool destructible, int score, int fuel);
     void update(Time dt, Time totalTime) override;
     void draw(RenderWindow& window) override;
 private:

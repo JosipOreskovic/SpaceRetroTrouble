@@ -6,7 +6,7 @@
 #include "TankMissile.h"
 
 
-Tank::Tank(float x, float y, float speed) : GameObject(x, y, speed)
+Tank::Tank(float x, float y, float speed, bool destructible, int score, int fuel) : GameObject(x, y, speed, destructible, score, fuel)
 {
     sprite_ = Sprite(AssetManager::GetTexture("Assets/Graphics/Tank.png"));
     tankMissile_ = shared_ptr<TankMissile>(new TankMissile(position_.x, position_.y));
