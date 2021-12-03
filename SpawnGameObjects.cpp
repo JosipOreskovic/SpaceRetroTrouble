@@ -45,24 +45,24 @@ void Game::spawn(string objectName, vector<shared_ptr<GameObject>>& gameObjects)
 
         if (objectName == "Rockets")
         {
-            rockets_.push_back(shared_ptr<Rocket>(new Rocket(resolution_.x + pos.x * TILE_DIMENSION, resolution_.y - pos.y * TILE_DIMENSION, GAME_SPEED, true, 10, 0)));
+            rockets_.push_back(make_shared<Rocket>(resolution_.x + pos.x * TILE_DIMENSION, resolution_.y - pos.y * TILE_DIMENSION, GAME_SPEED, true, 10, 0));
         }
 
 
         if (objectName == "PlasmaCannons")
         {
-            tanks_.push_back(shared_ptr<Tank>(new Tank(resolution_.x + pos.x * TILE_DIMENSION, resolution_.y - pos.y * TILE_DIMENSION, GAME_SPEED, true, 10, 0)));
+            tanks_.push_back(make_shared<Tank>(resolution_.x + pos.x * TILE_DIMENSION, resolution_.y - pos.y * TILE_DIMENSION, GAME_SPEED, true, 10, 0));
         }
 
 
         if (objectName == "FuelTanks")
         {
-            fuelTanks_.push_back(shared_ptr<FuelTank>(new FuelTank(resolution_.x + pos.x * TILE_DIMENSION, resolution_.y - pos.y * TILE_DIMENSION, GAME_SPEED, true, 10, 10)));
+            fuelTanks_.push_back(make_shared<FuelTank>(resolution_.x + pos.x * TILE_DIMENSION, resolution_.y - pos.y * TILE_DIMENSION, GAME_SPEED, true, 10, 10));
         }
 
         if (objectName == "Mines")
         {
-            mines_.push_back(shared_ptr<Mine>(new Mine(resolution_.x + pos.x * TILE_DIMENSION, pos.y * TILE_DIMENSION, GAME_SPEED, true, 10, 0)));
+            mines_.push_back(make_shared<Mine>(resolution_.x + pos.x * TILE_DIMENSION, pos.y * TILE_DIMENSION, GAME_SPEED, true, 10, 0));
         }
 
 
@@ -70,14 +70,14 @@ void Game::spawn(string objectName, vector<shared_ptr<GameObject>>& gameObjects)
         {
             float speed;
             ss >> speed;
-            meteors_.push_back(shared_ptr<Meteor>(new Meteor(resolution_.x + pos.x * TILE_DIMENSION, pos.y * TILE_DIMENSION, speed, true, 10, 0)));
+            meteors_.push_back(make_shared<Meteor>(resolution_.x + pos.x * TILE_DIMENSION, pos.y * TILE_DIMENSION, speed, true, 10, 0));
         }
 
         if (objectName == "EnemyFleet")
         {
             float speed;
             ss >> speed;
-            enemyFleet_.push_back(shared_ptr<EnemyShip>(new EnemyShip(resolution_.x + pos.x * TILE_DIMENSION, pos.y * TILE_DIMENSION, speed, true, 10, 0)));
+            enemyFleet_.push_back(make_shared<EnemyShip>(resolution_.x + pos.x * TILE_DIMENSION, pos.y * TILE_DIMENSION, speed, true, 10, 0));
         }
     }
 }
