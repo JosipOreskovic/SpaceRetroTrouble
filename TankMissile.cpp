@@ -8,6 +8,7 @@ TankMissile::TankMissile(float x, float y)
     active_ = true;
     flying_ = false;
     speed_ = 400;
+    destructible_ = true;
 }
 
 void TankMissile::update(Time dt, Vector2f playerPosition)

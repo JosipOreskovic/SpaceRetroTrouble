@@ -15,7 +15,7 @@ Player::Player()
     newMissile_ = false;
 
     shipSprite_ = Sprite(AssetManager::GetTexture("Assets/Graphics/PlayerShip.png"));
-    shipSprite_.setOrigin(shipSprite_.getLocalBounds().width / 2., shipSprite_.getLocalBounds().height / 2.);
+    shipSprite_.setOrigin(shipSprite_.getLocalBounds().width / 2.0f, shipSprite_.getLocalBounds().height / 2.0f);
 
     engineAnim_ = new Animation("PlayerEngine", "Assets/Graphics/FlightEngine.png", seconds(1), true,
         Vector2f(position_.x, position_.y), Vector2f(0, 0), Vector2i(64, 64), 4);
@@ -24,7 +24,7 @@ Player::Player()
 
 }
 
-Sprite &Player::getShipSprite()
+Sprite& Player::getShipSprite()
 {
     return shipSprite_;
 }

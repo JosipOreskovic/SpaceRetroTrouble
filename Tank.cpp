@@ -9,7 +9,7 @@
 Tank::Tank(float x, float y, float speed, bool destructible, int score, int fuel) : GameObject(x, y, speed, destructible, score, fuel)
 {
     sprite_ = Sprite(AssetManager::GetTexture("Assets/Graphics/Tank.png"));
-    tankMissile_ = shared_ptr<TankMissile>(new TankMissile(position_.x, position_.y));
+    tankMissile_ = make_shared<TankMissile>(position_.x, position_.y);
 }
 
 shared_ptr<GameObject>& Tank::getTankMissile()
@@ -27,7 +27,7 @@ void Tank::update(Time dt, Time totalTime, Vector2f playerPosition)
     }
 	else
     {
-		if (explosionAnim_->update(dt, Vector2f(position_.x, position_.y + TILE_DIMENSION / 2.)))
+		if (explosionAnim_->update(dt, Vector2f(position_.x, position_.y + TILE_DIMENSION / 2.0f)))
 		{
 			active_ = false;
 		}

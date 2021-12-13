@@ -38,7 +38,7 @@ void Game::spawn(string objectName, vector<shared_ptr<GameObject>>& gameObjects)
         {
             int type;
             ss >> type;
-            tiles_.push_back(shared_ptr<Tile>(new Tile(resolution_.x + pos.x * TILE_DIMENSION, resolution_.y - pos.y * TILE_DIMENSION, GAME_SPEED, false, 0, 0)));
+            tiles_.push_back(make_shared<Tile>(resolution_.x + pos.x * TILE_DIMENSION, resolution_.y - pos.y * TILE_DIMENSION, GAME_SPEED, false, 0, 0));
             tiles_.back()->getSprite().setTexture(AssetManager::GetTexture("Assets/Graphics/Tiles/Level" + to_string(level_) + "/Tile" + to_string(type) + ".png"));
         }
 

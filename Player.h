@@ -16,7 +16,7 @@ class Player
 public:
     Player();
    
-	Sprite &getShipSprite();
+	Sprite& getShipSprite();
   
     Vector2f getPosition();
     int getFuelLevel();

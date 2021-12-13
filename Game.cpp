@@ -7,12 +7,25 @@
 
 Game::Game()
 {
-    resolution_.x = VideoMode::getDesktopMode().width;
-    resolution_.y = VideoMode::getDesktopMode().height;
+    resolution_.x = static_cast<float>(VideoMode::getDesktopMode().width);
+    resolution_.y = static_cast<float>(VideoMode::getDesktopMode().height);
     player.setPosition(resolution_.x, resolution_.y);
-    window_.create(VideoMode(resolution_.x, resolution_.y), "Space Retro Trouble", Style::Fullscreen);
+    window_.create(VideoMode(static_cast<int>(resolution_.x), static_cast<int>(resolution_.y)), "Space Retro Trouble", Style::Fullscreen);
     window_.setFramerateLimit(60);
     window_.setMouseCursorVisible(false);
+
+    totalDistance_ = 0.0f;
+	levelChange_ = false;
+	levelRestart_ = false;
+
+    state_ = State::Start;
+    isRunning_ = true;
+
+    score_ = 0;;
+    hiScore_ = 0;
+    lives_ = 3;
+    level_ = 1;
+
 }
 
 void Game::run()
@@ -20,7 +33,7 @@ void Game::run()
 
     Clock clock;
 
-    srand(time(0));
+    srand(static_cast<Uint32>(time(0)));
 
     initialize();
 
@@ -57,7 +70,7 @@ void Game::lateUpdate()
 
 void Game::initialize()
 {
-    player.setPosition(resolution_.x / 2.,resolution_.y / 2.);
+    player.setPosition(resolution_.x / 2.0f,resolution_.y / 2.0f);
     player.setActive();
 
     state_ = State::Start;
@@ -99,9 +112,9 @@ void Game::restart()
 
     player.reset();
 
-    totalDistance_ = 2666 * (level_ - 1);
+    totalDistance_ = 2666.0f * (level_ - 1);
 
-    player.setPosition(resolution_.x / 2., resolution_.y / 2.);
+    player.setPosition(resolution_.x / 2.0f, resolution_.y / 2.0f);
 }
 
 int Game::getLives()
