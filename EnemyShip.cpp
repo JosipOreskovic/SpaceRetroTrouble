@@ -4,10 +4,10 @@
 #pragma once
 #include "EnemyShip.h"
 
-EnemyShip::EnemyShip(float x, float y, float speed, bool destructible, int score, int fuel) : GameObject(x,y,speed, destructible, score, fuel), startPositionY_(y), angle_(0.0), oscilation_(2.0)
+EnemyShip::EnemyShip(float x, float y, float speed, bool destructible, int score, int fuel) : GameObject(x,y,speed, destructible, score, fuel), startPositionY_(y), angle_(0.0f), oscilation_(2)
 {
     sprite_ = Sprite(AssetManager::GetTexture("Assets/Graphics/EnemyShip.png"));
-    sprite_.setOrigin(sprite_.getLocalBounds().width / 2., sprite_.getLocalBounds().height / 2.);
+    sprite_.setOrigin(sprite_.getLocalBounds().width / 2.0f, sprite_.getLocalBounds().height / 2.0f);
 }
 
 void EnemyShip::update(Time dt, Time totalTime)

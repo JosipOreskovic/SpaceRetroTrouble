@@ -29,7 +29,7 @@ Sprite& Player::getShipSprite()
     return shipSprite_;
 }
 
-Vector2f Player::getPosition()
+Vector2f Player::getPosition() const
 {
     return position_;
 }
@@ -164,7 +164,7 @@ void Player::hit(Vector2f hitPosition, Time totalTime)
     explosionAnim_->resetElapsedTime();
 }
 
-bool Player::isActive()
+bool Player::isActive() const
 {
     return active_;
 }
@@ -186,7 +186,7 @@ void Player::reset()
     newBomb_ = false;
     newMissile_ = false;
 }
-int Player::getFuelLevel()
+int Player::getFuelLevel() const
 {
     return fuelLevel_;
 }

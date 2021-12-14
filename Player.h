@@ -17,9 +17,9 @@ public:
     Player();
    
 	Sprite& getShipSprite();
-  
-    Vector2f getPosition();
-    int getFuelLevel();
+    Vector2f getPosition() const;
+
+    int getFuelLevel() const;
     void setFuelLevel(int fuel);
 
 	vector<shared_ptr<GameObject>>& getMissiles();
@@ -48,7 +48,7 @@ public:
     void stopDown();
 
     void hit(Vector2f hitPosition, Time totalTime);
-    bool isActive();
+    bool isActive() const;
     void setActive();
 
 private:

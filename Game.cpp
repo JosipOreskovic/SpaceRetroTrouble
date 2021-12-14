@@ -2,7 +2,6 @@
 // Created by josip on 13.08.2021..
 //
 #pragma once
-#include <sstream>
 #include "Game.h"
 
 Game::Game()
@@ -117,7 +116,7 @@ void Game::restart()
     player.setPosition(resolution_.x / 2.0f, resolution_.y / 2.0f);
 }
 
-int Game::getLives()
+int Game::getLives() const
 {
     return lives_;
 }
@@ -126,12 +125,12 @@ void Game::setLives(int lives)
     lives_ += lives;
 }
 
-Time Game::getTotalTime()
+Time Game::getTotalTime() const
 {
     return totalTime_;
 }
 
-int Game::getScore()
+int Game::getScore() const
 {
     return score_;
 }

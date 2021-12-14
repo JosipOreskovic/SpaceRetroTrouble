@@ -2,7 +2,6 @@
 // Created by josip on 09.08.2021..
 //
 #pragma once
-
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <map>

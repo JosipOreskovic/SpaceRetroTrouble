@@ -24,7 +24,7 @@ Sprite& GameObject::getSprite()
     return sprite_;
 }
 
-Vector2f GameObject::getPosition()
+Vector2f GameObject::getPosition() const
 {
     return position_;
 }
@@ -35,7 +35,7 @@ void GameObject::setPosition(float x, float y)
     position_.y = y;
 }
 
-float GameObject::getSpeed()
+float GameObject::getSpeed() const
 {
     return speed_;
 }
@@ -55,17 +55,17 @@ bool GameObject::isDestroyed() const
     return destroyed_;
 }
 
-int GameObject::getScore()
+int GameObject::getScore() const
 {
     return score_;
 }
 
-int GameObject::getFuel()
+int GameObject::getFuel() const
 {
     return fuel_;
 }
 
-bool GameObject::isDestructible()
+bool GameObject::isDestructible() const
 {
     return  destructible_;
 }

@@ -21,18 +21,18 @@ public:
     Sprite& getSprite();
     //void setSprite(Sprite&);
 
-    Vector2f getPosition();
+    Vector2f getPosition() const;
     void setPosition(float x, float y);
 
-    float getSpeed();
+    float getSpeed() const;
     void setSpeed(float speed);
 
     bool isActive() const;
     bool isDestroyed() const;
 
-    int getScore();
-    int getFuel();
-    bool isDestructible();
+    int getScore() const;
+    int getFuel() const;
+    bool isDestructible() const;
 
     void start();
     void stop();

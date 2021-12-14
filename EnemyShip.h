@@ -5,6 +5,7 @@
 
 #include "GameObject.h"
 
+
 class EnemyShip : public GameObject
 {
 public:

@@ -10,7 +10,7 @@ Bomb::Bomb(float x, float y, float speed, bool destructible, int score, int fuel
     gravity_ = 1.3f;
     rotationSpeed_ = 50.0f;
     sprite_ = Sprite(AssetManager::GetTexture("Assets/Graphics/Bomb.png"));
-    sprite_.setOrigin(sprite_.getLocalBounds().width / 2., sprite_.getLocalBounds().height / 2.);
+    sprite_.setOrigin(sprite_.getLocalBounds().width / 2.0f, sprite_.getLocalBounds().height / 2.0f);
 }
 
 void Bomb::update(Time dt)

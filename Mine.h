@@ -5,6 +5,7 @@
 
 #include "GameObject.h"
 
+
 class Mine : public GameObject
 {
 public:

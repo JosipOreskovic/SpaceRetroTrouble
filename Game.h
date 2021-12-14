@@ -3,7 +3,6 @@
 //
 
 #pragma once
-
 #include <vector>
 #include <sstream>
 #include <fstream>
@@ -28,7 +27,6 @@
 #include "Mine.h"
 #include "TankMissile.h"
 
-
 using namespace sf;
 
 class Game
@@ -52,7 +50,7 @@ private:
     void shutDown();
     void restart();
 
-    Time getTotalTime();
+    Time getTotalTime() const;
 
     void spawnTiles();
     void spawnMines();
@@ -73,10 +71,10 @@ private:
 
     void collision();
 
-    int getLives();
+    int getLives() const;
     void setLives(int lives);
 
-    int getScore();
+    int getScore() const;
     void setScore(int score);
 
     void DetectCollision(Player& player,shared_ptr<GameObject> const& gameObject, Time const& totalTime);
