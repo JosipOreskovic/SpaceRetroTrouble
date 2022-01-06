@@ -6,13 +6,13 @@
 
 Meteor::Meteor(float x, float y, float speed, bool destructible, int score, int fuel) : GameObject(x,y,speed, destructible, score, fuel)
 {
-	sprite_ = Sprite(AssetManager::GetTexture("Assets/Graphics/Meteor1.png"));
+	sprite_ = sf::Sprite(AssetManager::GetTexture("Assets/Graphics/Meteor1.png"));
     sprite_.setOrigin(sprite_.getLocalBounds().width / 2., sprite_.getLocalBounds().height / 2.);
-	meteorAnim_ = new Animation("Meteor", "Assets/Graphics/Meteor.png", seconds(1), true,
-								Vector2f(position_.x, position_.y), Vector2f(0, 0), Vector2i(64, 64), 6);
+	meteorAnim_ = new Animation("Meteor", "Assets/Graphics/Meteor.png", sf::seconds(1), true,
+        sf::Vector2f(position_.x, position_.y), sf::Vector2f(0, 0), sf::Vector2i(64, 64), 6);
 }
 
-void Meteor::update(Time dt, Time totalTime)
+void Meteor::update(sf::Time dt, sf::Time totalTime)
 {
     if (!destroyed_)
     {
@@ -24,14 +24,14 @@ void Meteor::update(Time dt, Time totalTime)
     {
         position_.x -= GAME_SPEED * dt.asSeconds();
 
-		if (explosionAnim_->update(dt, Vector2f(position_.x, position_.y)))
+		if (explosionAnim_->update(dt, sf::Vector2f(position_.x, position_.y)))
 		{
 			active_ = false;
 		}
     }
 }
 
-void Meteor::draw(RenderWindow& window)
+void Meteor::draw(sf::RenderWindow& window)
 {
     if (!destroyed_)
     {

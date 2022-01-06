@@ -23,47 +23,47 @@ void Game::spawnGameObjects()
         levelChange_ = false;
 }
 
-void Game::spawn(string objectName, vector<shared_ptr<GameObject>>& gameObjects)
+void Game::spawn(std::string objectName, std::vector<std::shared_ptr<GameObject>>& gameObjects)
 {
-    string fileName("Assets/Levels/Level" + to_string(level_) + "/" + objectName + ".txt");
-    string s;
-    ifstream inFile(fileName);
+    std::string fileName("Assets/Levels/Level" + std::to_string(level_) + "/" + objectName + ".txt");
+    std::string s;
+    std::ifstream inFile(fileName);
 
     while (getline(inFile, s))
     {
-        Vector2f pos;
-        stringstream ss(s);
+        sf::Vector2f pos;
+        std::stringstream ss(s);
         ss >> pos.x >> pos.y;
 
         if (objectName == "Tiles")
         {
             int type;
             ss >> type;
-            tiles_.push_back(make_shared<Tile>(resolution_.x + pos.x * TILE_DIMENSION, resolution_.y - pos.y * TILE_DIMENSION, GAME_SPEED, false, 0, 0));
-            tiles_.back()->getSprite().setTexture(AssetManager::GetTexture("Assets/Graphics/Tiles/Level" + to_string(level_) + "/Tile" + to_string(type) + ".png"));
+            tiles_.push_back(std::make_shared<Tile>(resolution_.x + pos.x * TILE_DIMENSION, resolution_.y - pos.y * TILE_DIMENSION, GAME_SPEED, false, 0, 0));
+            tiles_.back()->getSprite().setTexture(AssetManager::GetTexture("Assets/Graphics/Tiles/Level" + std::to_string(level_) + "/Tile" + std::to_string(type) + ".png"));
         }
 
 
         if (objectName == "Rockets")
         {
-            rockets_.push_back(make_shared<Rocket>(resolution_.x + pos.x * TILE_DIMENSION, resolution_.y - pos.y * TILE_DIMENSION, GAME_SPEED, true, 10, 0));
+            rockets_.push_back(std::make_shared<Rocket>(resolution_.x + pos.x * TILE_DIMENSION, resolution_.y - pos.y * TILE_DIMENSION, GAME_SPEED, true, 10, 0));
         }
 
 
         if (objectName == "PlasmaCannons")
         {
-            tanks_.push_back(make_shared<Tank>(resolution_.x + pos.x * TILE_DIMENSION, resolution_.y - pos.y * TILE_DIMENSION, GAME_SPEED, true, 10, 0));
+            tanks_.push_back(std::make_shared<Tank>(resolution_.x + pos.x * TILE_DIMENSION, resolution_.y - pos.y * TILE_DIMENSION, GAME_SPEED, true, 10, 0));
         }
 
 
         if (objectName == "FuelTanks")
         {
-            fuelTanks_.push_back(make_shared<FuelTank>(resolution_.x + pos.x * TILE_DIMENSION, resolution_.y - pos.y * TILE_DIMENSION, GAME_SPEED, true, 10, 10));
+            fuelTanks_.push_back(std::make_shared<FuelTank>(resolution_.x + pos.x * TILE_DIMENSION, resolution_.y - pos.y * TILE_DIMENSION, GAME_SPEED, true, 10, 10));
         }
 
         if (objectName == "Mines")
         {
-            mines_.push_back(make_shared<Mine>(resolution_.x + pos.x * TILE_DIMENSION, pos.y * TILE_DIMENSION, GAME_SPEED, true, 10, 0));
+            mines_.push_back(std::make_shared<Mine>(resolution_.x + pos.x * TILE_DIMENSION, pos.y * TILE_DIMENSION, GAME_SPEED, true, 10, 0));
         }
 
 
@@ -71,14 +71,14 @@ void Game::spawn(string objectName, vector<shared_ptr<GameObject>>& gameObjects)
         {
             float speed;
             ss >> speed;
-            meteors_.push_back(make_shared<Meteor>(resolution_.x + pos.x * TILE_DIMENSION, pos.y * TILE_DIMENSION, speed, true, 10, 0));
+            meteors_.push_back(std::make_shared<Meteor>(resolution_.x + pos.x * TILE_DIMENSION, pos.y * TILE_DIMENSION, speed, true, 10, 0));
         }
 
         if (objectName == "EnemyFleet")
         {
             float speed;
             ss >> speed;
-            enemyFleet_.push_back(make_shared<EnemyShip>(resolution_.x + pos.x * TILE_DIMENSION, pos.y * TILE_DIMENSION, speed, true, 10, 0));
+            enemyFleet_.push_back(std::make_shared<EnemyShip>(resolution_.x + pos.x * TILE_DIMENSION, pos.y * TILE_DIMENSION, speed, true, 10, 0));
         }
     }
 }

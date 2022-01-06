@@ -8,16 +8,16 @@
 
 Tank::Tank(float x, float y, float speed, bool destructible, int score, int fuel) : GameObject(x, y, speed, destructible, score, fuel)
 {
-    sprite_ = Sprite(AssetManager::GetTexture("Assets/Graphics/Tank.png"));
-    tankMissile_ = make_shared<TankMissile>(position_.x, position_.y);
+    sprite_ = sf::Sprite(AssetManager::GetTexture("Assets/Graphics/Tank.png"));
+    tankMissile_ = std::make_shared<TankMissile>(position_.x, position_.y);
 }
 
-shared_ptr<GameObject>& Tank::getTankMissile()
+std::shared_ptr<GameObject>& Tank::getTankMissile()
 {
     return tankMissile_;
 }
 
-void Tank::update(Time dt, Time totalTime, Vector2f playerPosition)
+void Tank::update(sf::Time dt, sf::Time totalTime, sf::Vector2f playerPosition)
 {
     position_.x -= speed_ * dt.asSeconds();
 
@@ -27,7 +27,7 @@ void Tank::update(Time dt, Time totalTime, Vector2f playerPosition)
     }
 	else
     {
-		if (explosionAnim_->update(dt, Vector2f(position_.x, position_.y + TILE_DIMENSION / 2.0f)))
+		if (explosionAnim_->update(dt, sf::Vector2f(position_.x, position_.y + TILE_DIMENSION / 2.0f)))
 		{
 			active_ = false;
 		}
@@ -39,7 +39,7 @@ void Tank::update(Time dt, Time totalTime, Vector2f playerPosition)
     }
 }
 
-void Tank::updateTankMissile(Time dt, Time totalTime, Vector2f playerPosition)
+void Tank::updateTankMissile(sf::Time dt, sf::Time totalTime, sf::Vector2f playerPosition)
 {
     tankMissile_->update(dt, playerPosition);
     if (tankMissile_->getPosition().x < -TILE_DIMENSION * 2 || tankMissile_->getPosition().y < 0)
@@ -48,7 +48,7 @@ void Tank::updateTankMissile(Time dt, Time totalTime, Vector2f playerPosition)
     }
 }
 
-void Tank::draw(RenderWindow& window)
+void Tank::draw(sf::RenderWindow& window)
 {
     if (!destroyed_)
     {
@@ -66,7 +66,7 @@ void Tank::draw(RenderWindow& window)
 void Tank::hit()
 {
     destroyed_ = true;
-    if (!((dynamic_pointer_cast<TankMissile>(tankMissile_))->isFlying()))
+    if (!((std::static_pointer_cast<TankMissile>(tankMissile_))->isFlying()))
         tankMissile_->stop();
 }
 

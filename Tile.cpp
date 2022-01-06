@@ -6,7 +6,7 @@
 
 Tile::Tile(float x, float y, float speed, bool destructible, int score, int fuel) : GameObject(x, y, speed, destructible, score, fuel) {}
 
-void Tile::update(Time dt, Time totalTime)
+void Tile::update(sf::Time dt, sf::Time totalTime)
 {
     position_.x -= speed_ * dt.asSeconds();
     sprite_.setPosition(position_.x, position_.y);

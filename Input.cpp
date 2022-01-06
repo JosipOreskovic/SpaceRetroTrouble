@@ -7,8 +7,8 @@
 void Game::input() {
 
     sf::Event event;
-    Vector2f playerPosition = player.getPosition();
-    Time pauseTime;
+    sf::Vector2f playerPosition = player.getPosition();
+    sf::Time pauseTime;
 
     while (window_.pollEvent(event))
     {

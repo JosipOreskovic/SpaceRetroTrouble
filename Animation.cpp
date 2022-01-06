@@ -1,7 +1,7 @@
 #include "Animation.h"
 
-Animation::Animation(string name, string textureFileName, Time duration, bool loop, Vector2f position,
-	Vector2f textureStartPosition, Vector2i spriteSize, int framesNum)
+Animation::Animation(std::string name, std::string textureFileName, sf::Time duration, bool loop, sf::Vector2f position,
+	sf::Vector2f textureStartPosition, sf::Vector2i spriteSize, int framesNum)
 {
 	name_ = name;
 	duration_ = duration;
@@ -12,10 +12,10 @@ Animation::Animation(string name, string textureFileName, Time duration, bool lo
 	framesNum_ = framesNum;
 	textureFileName_ = textureFileName;
 
-	sprite_ = Sprite(AssetManager::GetTexture(textureFileName));
+	sprite_ = sf::Sprite(AssetManager::GetTexture(textureFileName));
 }
 
-bool Animation::update(Time dt, Vector2f position)
+bool Animation::update(sf::Time dt, sf::Vector2f position)
 {
 	elapsedTime_ += dt;
 
@@ -34,12 +34,12 @@ bool Animation::update(Time dt, Vector2f position)
 	return false;
 }
 
-Sprite& Animation::getSprite()
+sf::Sprite& Animation::getSprite()
 {
 	return sprite_;
 }
 
 void Animation::resetElapsedTime()
 {
-	elapsedTime_ = seconds(0.0f);
+	elapsedTime_ = sf::seconds(0.0f);
 }

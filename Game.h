@@ -27,8 +27,6 @@
 #include "Mine.h"
 #include "TankMissile.h"
 
-using namespace sf;
-
 class Game
 {
 public:
@@ -43,31 +41,31 @@ private:
     // Private methods
 
     void input();
-    void update(Time dt);
+    void update(sf::Time dt);
     void draw();
     void lateUpdate();
     void initialize();
     void shutDown();
     void restart();
 
-    Time getTotalTime() const;
+	sf::Time getTotalTime() const;
 
     void spawnTiles();
     void spawnMines();
     void spawnEnemyFleet();
     void spawnMeteors();
-    void spawnRockets(Time dt);
-    void spawnTanks(Time dt);
-    void spawnFuelTanks(Time dt);
+    void spawnRockets(sf::Time dt);
+    void spawnTanks(sf::Time dt);
+    void spawnFuelTanks(sf::Time dt);
 
-    void updateGameObjects(Time dt, vector<shared_ptr<GameObject>>& gameObjects);
-    void updateGameObjects(Time dt, vector<shared_ptr<GameObject>>& gameObjects, Vector2f playerPosition);
+    void updateGameObjects(sf::Time dt, std::vector<std::shared_ptr<GameObject>>& gameObjects);
+    void updateGameObjects(sf::Time dt, std::vector<std::shared_ptr<GameObject>>& gameObjects, sf::Vector2f playerPosition);
 
     void spawnGameObjects();
-    void spawn(string objectName, vector<shared_ptr<GameObject>>& gameObjects);
+    void spawn(std::string objectName, std::vector<std::shared_ptr<GameObject>>& gameObjects);
 
     void updateHUD();
-    void updateBackground(Time dt);
+    void updateBackground(sf::Time dt);
 
     void collision();
 
@@ -77,16 +75,16 @@ private:
     int getScore() const;
     void setScore(int score);
 
-    void DetectCollision(Player& player,shared_ptr<GameObject> const& gameObject, Time const& totalTime);
-    void DetectCollision(Player& player, vector<shared_ptr<GameObject>> const& gameObjects, Time const& totalTime);
-    void DetectCollision(vector<shared_ptr<GameObject>> const& playerObjects, vector<shared_ptr<GameObject>> const& gameObjects, Time const &totalTime);
+    void DetectCollision(Player& player, std::shared_ptr<GameObject> const& gameObject, sf::Time const& totalTime);
+    void DetectCollision(Player& player, std::vector<std::shared_ptr<GameObject>> const& gameObjects, sf::Time const& totalTime);
+    void DetectCollision(std::vector<std::shared_ptr<GameObject>> const& playerObjects, std::vector<std::shared_ptr<GameObject>> const& gameObjects, sf::Time const &totalTime);
 
     //friend void removeObjects(vector<shared_ptr<GameObject>>& objects);
-    friend void deleteObjects(vector<shared_ptr<GameObject>>& objects);
+    friend void deleteObjects(std::vector<std::shared_ptr<GameObject>>& objects);
 
     // Private members
 
-    RenderWindow window_;
+    sf::RenderWindow window_;
 
     bool isRunning_;
 
@@ -99,24 +97,24 @@ private:
 
     Background background_;
 
-    vector<shared_ptr<GameObject>> enemyFleet_;
-    vector<shared_ptr<GameObject>> meteors_;
-    vector<shared_ptr<GameObject>> rockets_;
-    vector<shared_ptr<GameObject>> tanks_;
-    vector<shared_ptr<GameObject>> fuelTanks_;
-    vector<shared_ptr<GameObject>> tiles_;
-    vector<vector<shared_ptr<GameObject>>> tileSets_;
-    vector<shared_ptr<GameObject>> mines_;
+    std::vector<std::shared_ptr<GameObject>> enemyFleet_;
+    std::vector<std::shared_ptr<GameObject>> meteors_;
+    std::vector<std::shared_ptr<GameObject>> rockets_;
+    std::vector<std::shared_ptr<GameObject>> tanks_;
+    std::vector<std::shared_ptr<GameObject>> fuelTanks_;
+    std::vector<std::shared_ptr<GameObject>> tiles_;
+    std::vector<std::vector<std::shared_ptr<GameObject>>> tileSets_;
+    std::vector<std::shared_ptr<GameObject>> mines_;
 
-    Time lastEnemyShipTime_;
-    Time lastMeteorTime_;
-    Time lastRocketTime_;
-    Time lastTankTime_;
-    Time lastfuelTankTime_;
-    Time lastMineTime_;
+    sf::Time lastEnemyShipTime_;
+    sf::Time lastMeteorTime_;
+    sf::Time lastRocketTime_;
+    sf::Time lastTankTime_;
+    sf::Time lastfuelTankTime_;
+    sf::Time lastMineTime_;
 
-    Vector2f resolution_;
-    Time totalTime_;
+    sf::Vector2f resolution_;
+    sf::Time totalTime_;
     float totalDistance_;
     bool levelChange_;
     bool levelRestart_;
@@ -126,9 +124,9 @@ private:
     int lives_;
     int level_;
 
-    Music music_;
+    sf::Music music_;
 
-    Text scoreText_;
-    Text livesText_;
-    Text messageText_;
+    sf::Text scoreText_;
+    sf::Text livesText_;
+    sf::Text messageText_;
 };

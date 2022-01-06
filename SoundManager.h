@@ -2,8 +2,6 @@
 #include <SFML/Audio.hpp>
 #include "AssetManager.h"
 
-using namespace sf;
-
 class SoundManager
 {
 public:
@@ -11,7 +9,7 @@ public:
     void playObjectExplosionSound();
     void playPlayerExplosionSound();
 private:
-    Sound objectExplosionSound_;
-    Sound playerExplosionSound_;
+    sf::Sound objectExplosionSound_;
+    sf::Sound playerExplosionSound_;
 };
 

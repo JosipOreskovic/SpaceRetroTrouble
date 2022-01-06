@@ -14,41 +14,41 @@ Player::Player()
     newBomb_ = false;
     newMissile_ = false;
 
-    shipSprite_ = Sprite(AssetManager::GetTexture("Assets/Graphics/PlayerShip.png"));
+    shipSprite_ = sf::Sprite(AssetManager::GetTexture("Assets/Graphics/PlayerShip.png"));
     shipSprite_.setOrigin(shipSprite_.getLocalBounds().width / 2.0f, shipSprite_.getLocalBounds().height / 2.0f);
 
-    engineAnim_ = new Animation("PlayerEngine", "Assets/Graphics/FlightEngine.png", seconds(1), true,
-        Vector2f(position_.x, position_.y), Vector2f(0, 0), Vector2i(64, 64), 4);
-    explosionAnim_ = new Animation("PlayerExplosion", "Assets/Graphics/PlayerExplosion.png", seconds(2), false,
-        Vector2f(position_.x, position_.y), Vector2f(0, 0), Vector2i(256, 256), 11);
+    engineAnim_ = new Animation("PlayerEngine", "Assets/Graphics/FlightEngine.png", sf::seconds(1), true,
+        sf::Vector2f(position_.x, position_.y), sf::Vector2f(0, 0), sf::Vector2i(64, 64), 4);
+    explosionAnim_ = new Animation("PlayerExplosion", "Assets/Graphics/PlayerExplosion.png", sf::seconds(2), false,
+        sf::Vector2f(position_.x, position_.y), sf::Vector2f(0, 0), sf::Vector2i(256, 256), 11);
 
 }
 
-Sprite& Player::getShipSprite()
+sf::Sprite& Player::getShipSprite()
 {
     return shipSprite_;
 }
 
-Vector2f Player::getPosition() const
+sf::Vector2f Player::getPosition() const
 {
     return position_;
 }
 
-bool Player::update(Time dt, Time totalTime, Vector2f resolution)
+bool Player::update(sf::Time dt, sf::Time totalTime, sf::Vector2f resolution)
 {
     bool status = false; // flag for explosion animation is finished
 
     if (active_)
     {
         updateShip(dt, resolution);
-        engineAnim_->update(dt, Vector2f(position_.x - TILE_DIMENSION, position_.y));
+        engineAnim_->update(dt, sf::Vector2f(position_.x - TILE_DIMENSION, position_.y));
         updateFuel(totalTime);
         
     }
     else
     {
         playerHitPosition_.x -= speed_ * dt.asSeconds();
-        status =  explosionAnim_->update(dt, Vector2f(playerHitPosition_.x, playerHitPosition_.y));
+        status =  explosionAnim_->update(dt, sf::Vector2f(playerHitPosition_.x, playerHitPosition_.y));
     }
 
     updateBombs(dt, totalTime, resolution);
@@ -63,7 +63,7 @@ void Player::setPosition(float x, float y)
     position_.y = y;
 }
 
-void Player::updateShip(Time dt, Vector2f resolution)
+void Player::updateShip(sf::Time dt, sf::Vector2f resolution)
 {
     if (!outOfFuel_)
     {
@@ -102,7 +102,7 @@ void Player::updateShip(Time dt, Vector2f resolution)
     shipSprite_.setPosition(position_.x, position_.y);
 }
 
-void Player::updateFuel(Time totalTime)
+void Player::updateFuel(sf::Time totalTime)
 {
         if (totalTime.asSeconds() - fuelUseTime_.asSeconds() > 1)
         {
@@ -157,7 +157,7 @@ void Player::stopDown()
     downPressed_ = false;
 }
 
-void Player::hit(Vector2f hitPosition, Time totalTime)
+void Player::hit(sf::Vector2f hitPosition, sf::Time totalTime)
 {
     active_ = false;
     playerHitPosition_ = hitPosition;
@@ -191,7 +191,7 @@ int Player::getFuelLevel() const
     return fuelLevel_;
 }
 
-void Player::updateBombs(Time dt, Time totalTime, Vector2f resolution)
+void Player::updateBombs(sf::Time dt, sf::Time totalTime, sf::Vector2f resolution)
 {
 
     for (auto &bomb : bombs_)
@@ -212,7 +212,7 @@ void Player::updateBombs(Time dt, Time totalTime, Vector2f resolution)
     }
 }
 
-void Player::updateMissiles(Time dt, Time totalTime, Vector2f resolution)
+void Player::updateMissiles(sf::Time dt, sf::Time totalTime, sf::Vector2f resolution)
 {
 
     for (auto &missile : missiles_)
@@ -233,7 +233,7 @@ void Player::updateMissiles(Time dt, Time totalTime, Vector2f resolution)
     }
 }
 
-void Player::draw(RenderWindow &window)
+void Player::draw(sf::RenderWindow &window)
 {
     if (active_)
     {
@@ -258,23 +258,23 @@ void Player::draw(RenderWindow &window)
     }
 }
 
-vector<shared_ptr<GameObject>>& Player::getMissiles()
+std::vector<std::shared_ptr<GameObject>>& Player::getMissiles()
 {
     return missiles_;
 }
-vector<shared_ptr<GameObject>>& Player::getBombs()
+std::vector<std::shared_ptr<GameObject>>& Player::getBombs()
 {
     return bombs_;
 }
 
-void Player::input(Event& event, Time totalTime)
+void Player::input(sf::Event& event, sf::Time totalTime)
 {
     if (event.key.code == sf::Keyboard::Enter)
     {
         if (!newMissile_)
         {
             newMissile_ = true;
-            missiles_.push_back(make_shared<Missile>(position_.x + TILE_DIMENSION, position_.y + TILE_DIMENSION / 4., 600, false, 0, 0));
+            missiles_.push_back(std::make_shared<Missile>(position_.x + TILE_DIMENSION, position_.y + TILE_DIMENSION / 4., 600, false, 0, 0));
             lastMissileTime_ = totalTime;
         }
     }
@@ -286,12 +286,12 @@ void Player::input(Event& event, Time totalTime)
         if (!newBomb_)
         {
             newBomb_ = true;
-            bombs_.push_back(make_shared<Bomb>(position_.x, position_.y + TILE_DIMENSION / 4.0f, 300, true, 0, 0));
+            bombs_.push_back(std::make_shared<Bomb>(position_.x, position_.y + TILE_DIMENSION / 4.0f, 300, true, 0, 0));
             lastBombTime_ = totalTime;
         }
     }
 
-    if (Keyboard::isKeyPressed(Keyboard::W))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
     {
         moveUp();
     }
@@ -300,7 +300,7 @@ void Player::input(Event& event, Time totalTime)
         stopUp();
     }
 
-    if (Keyboard::isKeyPressed(Keyboard::S))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
         moveDown();
     }
@@ -309,7 +309,7 @@ void Player::input(Event& event, Time totalTime)
         stopDown();
     }
 
-    if (Keyboard::isKeyPressed(Keyboard::A))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
     {
         moveLeft();
     }
@@ -318,7 +318,7 @@ void Player::input(Event& event, Time totalTime)
         stopLeft();
     }
 
-    if (Keyboard::isKeyPressed(Keyboard::D))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {
         moveRight();
     }

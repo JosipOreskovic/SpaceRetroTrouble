@@ -7,11 +7,11 @@
 
 Mine::Mine(float x, float y, float speed, bool destructible, int score, int fuel) : GameObject(x,y,speed, destructible, score, fuel)
 {
-   sprite_ = Sprite(AssetManager::GetTexture("Assets/Graphics/Mine.png"));
+   sprite_ = sf::Sprite(AssetManager::GetTexture("Assets/Graphics/Mine.png"));
    sprite_.setOrigin(sprite_.getLocalBounds().width / 2., sprite_.getLocalBounds().height / 2.);
 }
 
-void Mine::update(Time dt, Time totalTime)
+void Mine::update(sf::Time dt, sf::Time totalTime)
 {
     position_.x -= speed_ * dt.asSeconds();
 
@@ -22,7 +22,7 @@ void Mine::update(Time dt, Time totalTime)
 
     else
     {
-        if (explosionAnim_->update(dt, Vector2f(position_.x, position_.y)))
+        if (explosionAnim_->update(dt, sf::Vector2f(position_.x, position_.y)))
             active_ = false;
     }
 }

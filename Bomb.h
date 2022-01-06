@@ -6,14 +6,13 @@
 
 #include "GameObject.h"
 
-
 class Bomb : public GameObject
 {
 public:
 
     Bomb(float x, float y, float speed, bool destructible, int score, int fuel);
     //void hit();
-    void update(Time dt) override;
+    void update(sf::Time dt) override;
 private:
     float angle_;
     float gravity_;

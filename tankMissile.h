@@ -8,8 +8,8 @@ public:
     TankMissile(float x, float y);
     bool isFlying();
     void hit() override;
-    void update(Time dt, Vector2f playerPosition) override;
-    void draw(RenderWindow& window) override;
+    void update(sf::Time dt, sf::Vector2f playerPosition) override;
+    void draw(sf::RenderWindow& window) override;
 private:
     bool flying_;
 };

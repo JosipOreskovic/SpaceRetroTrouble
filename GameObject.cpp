@@ -6,25 +6,25 @@
 
 GameObject::GameObject() : destroyed_(false), active_(true)
 {
-    explosionAnim_ = new Animation("ObjectExplosion", "Assets/Graphics/ObjectExplosion.png", seconds(1), false,
-		Vector2f(position_.x, position_.y), Vector2f(0, 0),
-        Vector2i(EXPLOSION_SPRITE_DIMENSION, EXPLOSION_SPRITE_DIMENSION), 10);
+    explosionAnim_ = new Animation("ObjectExplosion", "Assets/Graphics/ObjectExplosion.png", sf::seconds(1), false,
+        sf::Vector2f(position_.x, position_.y), sf::Vector2f(0, 0),
+        sf::Vector2i(EXPLOSION_SPRITE_DIMENSION, EXPLOSION_SPRITE_DIMENSION), 10);
 }
 
-GameObject::GameObject(float x, float y, float speed, bool destructible, int score, int fuel) : position_(Vector2f(x,y)), speed_(speed), destructible_(destructible),
+GameObject::GameObject(float x, float y, float speed, bool destructible, int score, int fuel) : position_(sf::Vector2f(x,y)), speed_(speed), destructible_(destructible),
 	score_(score), fuel_(fuel), destroyed_(false), active_(true)
 {
-    explosionAnim_ = new Animation("ObjectExplosion", "Assets/Graphics/ObjectExplosion.png", seconds(0.5f), false,
-		Vector2f(position_.x, position_.y), Vector2f(0, 0),
-        Vector2i(EXPLOSION_SPRITE_DIMENSION, EXPLOSION_SPRITE_DIMENSION), 10);
+    explosionAnim_ = new Animation("ObjectExplosion", "Assets/Graphics/ObjectExplosion.png", sf::seconds(0.5f), false,
+        sf::Vector2f(position_.x, position_.y), sf::Vector2f(0, 0),
+        sf::Vector2i(EXPLOSION_SPRITE_DIMENSION, EXPLOSION_SPRITE_DIMENSION), 10);
 }
 
-Sprite& GameObject::getSprite()
+sf::Sprite& GameObject::getSprite()
 {
     return sprite_;
 }
 
-Vector2f GameObject::getPosition() const
+sf::Vector2f GameObject::getPosition() const
 {
     return position_;
 }
@@ -87,7 +87,7 @@ void GameObject::hit()
 }
 
 
-void GameObject::draw(RenderWindow& window)
+void GameObject::draw(sf::RenderWindow& window)
 {
     if (!destroyed_)
     {

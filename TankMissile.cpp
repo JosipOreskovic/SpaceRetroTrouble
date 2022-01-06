@@ -2,7 +2,7 @@
 
 TankMissile::TankMissile(float x, float y)
 {
-    sprite_ = Sprite(AssetManager::GetTexture("Assets/Graphics/TankMissile.png"));
+    sprite_ = sf::Sprite(AssetManager::GetTexture("Assets/Graphics/TankMissile.png"));
     position_.x = x;
     position_.y = y;
     active_ = true;
@@ -11,7 +11,7 @@ TankMissile::TankMissile(float x, float y)
     destructible_ = true;
 }
 
-void TankMissile::update(Time dt, Vector2f playerPosition)
+void TankMissile::update(sf::Time dt, sf::Vector2f playerPosition)
 {
     if (!flying_)
     {
@@ -41,7 +41,7 @@ bool TankMissile::isFlying()
     return flying_;
 }
 
-void TankMissile::draw(RenderWindow& window)
+void TankMissile::draw(sf::RenderWindow& window)
 {
 	if (flying_)
 		window.draw(sprite_);

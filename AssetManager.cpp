@@ -6,7 +6,7 @@
 #include <assert.h>
 
 using namespace sf;
-using namespace std;
+
 
 AssetManager* AssetManager::instance_ = nullptr;
 
@@ -50,7 +50,7 @@ sf::Texture& AssetManager::GetTexture(std::string const& filename)
     }
 }
 
-Font& AssetManager::GetFont(const string &filename) {
+Font& AssetManager::GetFont(const std::string &filename) {
     auto& m = instance_->fonts_;
     auto keyValuePair = m.find(filename);
     if (keyValuePair != m.end())
@@ -66,7 +66,7 @@ Font& AssetManager::GetFont(const string &filename) {
 }
 
 
-SoundBuffer& AssetManager::GetSound(const string &filename) {
+SoundBuffer& AssetManager::GetSound(const std::string &filename) {
     auto& m = instance_->sounds_;
     auto keyValuePair = m.find(filename);
     if (keyValuePair != m.end())

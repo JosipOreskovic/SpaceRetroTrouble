@@ -6,8 +6,6 @@
 #include <SFML/Audio.hpp>
 #include <map>
 
-using namespace sf;
-using namespace std;
 
 // Global game constants
 
@@ -21,16 +19,16 @@ const float EXPLOSION_SPRITE_DIMENSION = 128.0f;
 class AssetManager {
 public:
     AssetManager();
-    static Texture& GetTexture(string const& filename);
-    static Font& GetFont(string const& filename);
-    static SoundBuffer& GetSound(string const& filename);
+    static sf::Texture& GetTexture(std::string const& filename);
+    static sf::Font& GetFont(std::string const& filename);
+    static sf::SoundBuffer& GetSound(std::string const& filename);
 
 private:
     // A map container from the STL,
     // that holds related pairs of String and Texture
-    map<string, Texture> textures_;
-    map<string, Font> fonts_;
-    map<string, SoundBuffer> sounds_;
+    std::map<std::string, sf::Texture> textures_;
+    std::map<std::string, sf::Font> fonts_;
+    std::map<std::string, sf::SoundBuffer> sounds_;
 
     // A pointer of the same type as the class itself
     // the one and only instance

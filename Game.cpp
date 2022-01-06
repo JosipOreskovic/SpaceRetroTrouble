@@ -6,10 +6,10 @@
 
 Game::Game()
 {
-    resolution_.x = static_cast<float>(VideoMode::getDesktopMode().width);
-    resolution_.y = static_cast<float>(VideoMode::getDesktopMode().height);
+    resolution_.x = static_cast<float>(sf::VideoMode::getDesktopMode().width);
+    resolution_.y = static_cast<float>(sf::VideoMode::getDesktopMode().height);
     player.setPosition(resolution_.x, resolution_.y);
-    window_.create(VideoMode(static_cast<int>(resolution_.x), static_cast<int>(resolution_.y)), "Space Retro Trouble", Style::Fullscreen);
+    window_.create(sf::VideoMode(static_cast<int>(resolution_.x), static_cast<int>(resolution_.y)), "Space Retro Trouble", sf::Style::Fullscreen);
     window_.setFramerateLimit(60);
     window_.setMouseCursorVisible(false);
 
@@ -30,15 +30,15 @@ Game::Game()
 void Game::run()
 {
 
-    Clock clock;
+    sf::Clock clock;
 
-    srand(static_cast<Uint32>(time(0)));
+    srand(static_cast<sf::Uint32>(time(0)));
 
     initialize();
 
     while (isRunning_)
     {
-        Time dt = clock.restart();
+        sf::Time dt = clock.restart();
         totalTime_ += dt;
   
         input();
@@ -125,7 +125,7 @@ void Game::setLives(int lives)
     lives_ += lives;
 }
 
-Time Game::getTotalTime() const
+sf::Time Game::getTotalTime() const
 {
     return totalTime_;
 }

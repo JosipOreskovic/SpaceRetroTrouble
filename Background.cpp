@@ -13,7 +13,7 @@ Background::Background()
     textures_.push_back(&AssetManager::GetTexture("Assets\\Graphics\\Background2.png"));
 }
 
-void Background::update(Time dt, Vector2f resolution)
+void Background::update(sf::Time dt, sf::Vector2f resolution)
 {
     position_.x -= BACKGROUND_SPEED * dt.asSeconds();
     if (position_.x  < -resolution.x)
@@ -23,7 +23,7 @@ void Background::update(Time dt, Vector2f resolution)
     }
 }
 
-void Background::draw(RenderWindow &window, Vector2f resolution)
+void Background::draw(sf::RenderWindow &window, sf::Vector2f resolution)
 {
     sprite_.setTexture(*textures_[order_]);
     sprite_.setPosition(position_.x,0.0f);

@@ -9,11 +9,11 @@ Bomb::Bomb(float x, float y, float speed, bool destructible, int score, int fuel
     angle_ = 0.0f;
     gravity_ = 1.3f;
     rotationSpeed_ = 50.0f;
-    sprite_ = Sprite(AssetManager::GetTexture("Assets/Graphics/Bomb.png"));
+    sprite_ = sf::Sprite(AssetManager::GetTexture("Assets/Graphics/Bomb.png"));
     sprite_.setOrigin(sprite_.getLocalBounds().width / 2.0f, sprite_.getLocalBounds().height / 2.0f);
 }
 
-void Bomb::update(Time dt)
+void Bomb::update(sf::Time dt)
 {
     if (!destroyed_)
     {
@@ -28,7 +28,7 @@ void Bomb::update(Time dt)
     else
     {
         position_.x -= GAME_SPEED * dt.asSeconds();
-        if (explosionAnim_->update(dt, Vector2f(position_.x, position_.y)))
+        if (explosionAnim_->update(dt, sf::Vector2f(position_.x, position_.y)))
         {
             active_ = false;
         }

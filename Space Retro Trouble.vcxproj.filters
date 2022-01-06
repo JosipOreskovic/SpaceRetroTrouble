@@ -60,7 +60,7 @@
     <ClInclude Include="Tank.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="tankMissile.h">
+    <ClInclude Include="TankMissile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Tile.h">

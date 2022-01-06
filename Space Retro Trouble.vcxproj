@@ -35,7 +35,7 @@
     <ClInclude Include="Rocket.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="Tank.h" />
-    <ClInclude Include="tankMissile.h" />
+    <ClInclude Include="TankMissile.h" />
     <ClInclude Include="Tile.h" />
   </ItemGroup>
   <ItemGroup>

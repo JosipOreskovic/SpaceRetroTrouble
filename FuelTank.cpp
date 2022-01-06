@@ -7,11 +7,11 @@
 
 FuelTank::FuelTank(float x, float y, float speed, bool destructible, int score, int fuel) : GameObject(x, y, speed, destructible, score, fuel)
 {
-    sprite_ = Sprite(AssetManager::GetTexture("Assets/Graphics/FuelTank.png"));
+    sprite_ = sf::Sprite(AssetManager::GetTexture("Assets/Graphics/FuelTank.png"));
     active_ = true;
 }
 
-void FuelTank::update(Time dt, Time totalTime)
+void FuelTank::update(sf::Time dt, sf::Time totalTime)
 {
     position_.x -= speed_ * dt.asSeconds();
 
@@ -21,7 +21,7 @@ void FuelTank::update(Time dt, Time totalTime)
     }
 	else
     {
-		if (explosionAnim_->update(dt, Vector2f(position_.x, position_.y + TILE_DIMENSION / 2.)))
+		if (explosionAnim_->update(dt, sf::Vector2f(position_.x, position_.y + TILE_DIMENSION / 2.)))
 		{
 			active_ = false;
 		}

@@ -11,6 +11,6 @@ class Tile : public GameObject
 public:
     Tile(float x, float y, float speed, bool destructible, int score, int fuel);
 
-    void update(Time dt, Time totalTime) override;
+    void update(sf::Time dt, sf::Time totalTime) override;
 };
 

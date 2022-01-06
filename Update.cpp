@@ -4,13 +4,13 @@
 
 #include "Game.h"
 
-void Game::update(Time dt) {
+void Game::update(sf::Time dt) {
 
     if (state_ == State::Start)
     {
         messageText_.setString("SPACE RETRO TROUBLE\n\nPress P to play\nPress Q to quit");
         messageText_.setCharacterSize(70);
-        messageText_.setFillColor(Color::White);
+        messageText_.setFillColor(sf::Color::White);
         messageText_.setPosition(resolution_.x / 2 - 300, resolution_.y / 2 - 200);
     }
 
@@ -20,7 +20,7 @@ void Game::update(Time dt) {
 
         messageText_.setString("Game over!\n\nPress P to play\nPress Q to quit");
         messageText_.setCharacterSize(70);
-        messageText_.setFillColor(Color::White);
+        messageText_.setFillColor(sf::Color::White);
         messageText_.setPosition(resolution_.x / 2  - 300, resolution_.y / 2  - 200);
     }
 
@@ -28,7 +28,7 @@ void Game::update(Time dt) {
     {
         messageText_.setString("Paused\n\nPress Esc to resume\nPress Q to quit");
         messageText_.setCharacterSize(70);
-        messageText_.setFillColor(Color::White);
+        messageText_.setFillColor(sf::Color::White);
         messageText_.setPosition(resolution_.x / 2  - 300, resolution_.y / 2  - 200);
     }
 
@@ -83,9 +83,9 @@ void Game::update(Time dt) {
     }
 }
 
-void Game::updateGameObjects(Time dt, vector<shared_ptr<GameObject>>& gameObjects)
+void Game::updateGameObjects(sf::Time dt, std::vector<std::shared_ptr<GameObject>>& gameObjects)
 {
-    for_each(gameObjects.begin(), gameObjects.end(), [&](auto& gameObject)
+    std::for_each(gameObjects.begin(), gameObjects.end(), [&](auto& gameObject)
         {
             if (gameObject->getPosition().x < -TILE_DIMENSION * 2 || gameObject->getPosition().y < 0)
             {
@@ -97,7 +97,7 @@ void Game::updateGameObjects(Time dt, vector<shared_ptr<GameObject>>& gameObject
     );
 }
 
-void Game::updateGameObjects(Time dt, vector<shared_ptr<GameObject>>& gameObjects, Vector2f playerPosition)
+void Game::updateGameObjects(sf::Time dt, std::vector<std::shared_ptr<GameObject>>& gameObjects, sf::Vector2f playerPosition)
 {
 
     for_each(gameObjects.begin(), gameObjects.end(), [&](auto& gameObject)
@@ -115,7 +115,7 @@ void Game::updateGameObjects(Time dt, vector<shared_ptr<GameObject>>& gameObject
 void Game::updateHUD()
 {
 
-    stringstream ss;
+    std::stringstream ss;
     ss << "Score: " << score_;
     ss << "         " << "Lives: " << lives_;
     ss << "         " << "Fuel: " << player.getFuelLevel();
@@ -123,7 +123,7 @@ void Game::updateHUD()
 
     scoreText_.setString(ss.str());
     scoreText_.setCharacterSize(55);
-    scoreText_.setFillColor(Color::White);
+    scoreText_.setFillColor(sf::Color::White);
     scoreText_.setPosition(20, 0);
 
     ss.str("");

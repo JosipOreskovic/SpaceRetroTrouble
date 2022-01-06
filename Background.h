@@ -5,15 +5,14 @@
 #pragma once
 #include "GameObject.h"
 
-
 class Background : public GameObject
 {
 public:
     Background();
-    void update(Time dt, Vector2f resolution) override;
-    void draw(RenderWindow& window, Vector2f resolution);
+    void update(sf::Time dt, sf::Vector2f resolution) override;
+    void draw(sf::RenderWindow& window, sf::Vector2f resolution);
 private:
-    vector<Texture*> textures_;
+    std::vector<sf::Texture*> textures_;
     bool order_;
 };
 

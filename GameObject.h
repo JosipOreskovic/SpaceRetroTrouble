@@ -8,9 +8,6 @@
 #include "Animation.h"
 #include "SoundManager.h"
 
-using namespace sf;
-using namespace std;
-
 class GameObject
 {
 public:
@@ -18,10 +15,10 @@ public:
     GameObject(float x, float y, float speed, bool destructible, int score, int fuel);
     virtual ~GameObject() = default;
 
-    Sprite& getSprite();
+    sf::Sprite& getSprite();
     //void setSprite(Sprite&);
 
-    Vector2f getPosition() const;
+    sf::Vector2f getPosition() const;
     void setPosition(float x, float y);
 
     float getSpeed() const;
@@ -38,16 +35,16 @@ public:
     void stop();
     virtual void hit();
 
-    virtual void update(Time dt) {}
-    virtual void update(Time dt, Time totalTime) {}
-    virtual void update(Time dt, Vector2f playerPosition) {}
-    virtual void update(Time dt, Time totalTime, Vector2f playerPosition) {}
+    virtual void update(sf::Time dt) {}
+    virtual void update(sf::Time dt, sf::Time totalTime) {}
+    virtual void update(sf::Time dt, sf::Vector2f playerPosition) {}
+    virtual void update(sf::Time dt, sf::Time totalTime, sf::Vector2f playerPosition) {}
 
-    virtual void draw(RenderWindow & window);
+    virtual void draw(sf::RenderWindow & window);
 
 protected:
-    Sprite sprite_;
-    Vector2f position_;
+    sf::Sprite sprite_;
+    sf::Vector2f position_;
     bool active_;
     float speed_;
     bool destroyed_;
